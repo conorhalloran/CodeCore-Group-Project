@@ -1,4 +1,5 @@
 class Admin::DashboardController < ApplicationController
+<<<<<<< HEAD
   def index
       @stats = {
         event_count: Event.count
@@ -6,4 +7,6 @@ class Admin::DashboardController < ApplicationController
 
       @users = User.all
     end
+=======
+>>>>>>> Setup Admin
 end
