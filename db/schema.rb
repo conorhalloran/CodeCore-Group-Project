@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20171118235734) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.string "phone_number"
     t.boolean "is_admin", default: false
     t.string "phone_number"
     t.index ["email"], name: "index_users_on_email", unique: true
