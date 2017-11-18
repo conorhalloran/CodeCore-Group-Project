@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :new_event
 
   def user_signed_in?
     session[:user_id].present?
@@ -10,6 +11,11 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: session[:user_id])
   end
   helper_method :current_user
+
+  def new_event
+    @new_event = Event.new
+  end
+  helper_method :new_event
 
   private
 
