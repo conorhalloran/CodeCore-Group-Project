@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
-    before_action :currect_user
+    before_action :current_user
 
     def index
+        @user = User.all
     end
 
     def show
@@ -19,10 +20,12 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         
         respond_to do |format|
-          if @event.save
-                # success
+          if @user.save
+                session[:user_id] = @user.id
+
+                format.html { redirect_to users_path, notice: 'User succesfully created' }
             else
-                # redirect
+                format.html { render :new }
             end
         end
     end
@@ -30,12 +33,11 @@ class UsersController < ApplicationController
     def update
         respond_to do |format|
             if @user.update(user_params)
-                format.html { redirect_to @user, notice: 'User was successfully updated.' }
-                format.json { render :show, status: :ok, location: @event }
+                format.html { redirect_to users_path, notice: 'User succesfully updated' }
             else
                 format.html { render :edit }
-                format.json { render json: @user.errors, status: :unprocessable_entity }
           end
+          
         end
     end
 
@@ -49,10 +51,10 @@ class UsersController < ApplicationController
 
     private
         def set_user
-            @event = Event.find(params[:id])
+            @user = User.find(params[:id])
          end
 
         def user_params
-            params.require(:event).permit(:name, :email, :phone_number, :password, :password_confirmation)
+            params.require(:user).permit(:first_name, :last_name, :email, :phone_number, :password, :password_confirmation)
         end
 end
