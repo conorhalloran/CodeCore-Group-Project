@@ -4,5 +4,8 @@ Rails.application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
 
+  namespace :admin do
+    resources :dashboard, only: [:index]
+  end
   root "events#index"
 end
