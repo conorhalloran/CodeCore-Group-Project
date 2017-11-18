@@ -34,4 +34,20 @@ class EventsMailer < ApplicationMailer
     @guest = guest
     mail(to: @guest.email, subject: "Your event, #{@event.name} has been canceled.")
   end
+
+  def leader_notify_user(event, user, message)
+    @event = event
+    @user = user
+    @message = message
+    mail(to: @user.email, subject: "There has been an update to your #{@event.event_type}")
+  end
+
+  def leader_notify_guest(event, guest, message)
+    @event = event
+    @guest = guest
+    @message = message
+    mail(to: @guest.email, subject: "There has been an update to your #{@event.event_type}")
+  end
+
+
 end
