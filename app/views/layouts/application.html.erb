@@ -25,7 +25,10 @@
           <li class="nav-item">
             <a class="nav-link" href="https://slack.com/"><%= image_tag 'slack.svg', style: 'width: 100px;' %></a>
           </li>
+
           <% if user_signed_in? %>
+          <% if current_user.is_admin? %>
+          <%= link_to 'Home', root_path %>
           <div class="form-inline">
             <button
               id="new_event_btn"
@@ -45,6 +48,7 @@
             <%= link_to('Sign Out', session_path, method: :delete, :class => 'nav-link') %>
           </li>
           <% end %>
+        <% end %>
         </ul>
       </div>
     </nav>

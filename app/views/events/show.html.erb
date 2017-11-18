@@ -20,7 +20,12 @@
 
 <p>
   <strong>User:</strong>
-  <%= @event.user.full_name %>
+  <%= @event.user %>
+</p>
+
+<p>
+  <strong>Leader:</strong>
+  <%= @event.leader %>
 </p>
 
 <p>
@@ -38,5 +43,8 @@
   <%= @event.end_time %>
 </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
+<% if user_signed_in? && can?(:manage, @event) %>
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to "Delete", event_path(@event), method: :delete %>
+<% end %>
