@@ -26,9 +26,15 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap', '~> 4.0.0.beta'
 gem 'jquery-rails'
+gem 'simple_calendar', '~> 2.0'
+gem 'simple_form'
+gem 'letter_opener'
+gem 'pry' # pry gem itself
+gem 'pry-rails' # a gem that integrates pry with rails seamlessly
+gem 'hirb'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -36,6 +42,8 @@ gem 'jquery-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'faker'
+  gem 'cowsay', '~> 0.3.0'
 end
 
 group :development do
