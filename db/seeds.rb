@@ -21,7 +21,6 @@ User.destroy_all
 Guest.destroy_all
 
 
-
 super_user = User.create(
   first_name: 'Cow',
   last_name: 'Fun',
