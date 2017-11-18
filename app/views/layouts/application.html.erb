@@ -26,6 +26,20 @@
             <a class="nav-link" href="https://slack.com/"><%= image_tag 'slack.svg', style: 'width: 100px;' %></a>
           </li>
           <% if user_signed_in? %>
+          <div class="form-inline">
+            <button
+              type="button"
+              class="btn btn-outline-danger button-space-sides"
+              data-toggle="modal"
+              data-target="#exampleModal"
+              data-whatever="@mdo"
+            >
+            New Event
+            </button>
+          </div>
+          <span class="navbar-text">
+            Hello, <%= current_user.full_name %>
+          </span>
           <li class="nav-item">
             <%= link_to('Sign Out', session_path, method: :delete, :class => 'nav-link') %>
           </li>
@@ -33,6 +47,31 @@
         </ul>
       </div>
     </nav>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New Event</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <%= form_for @new_event do |form| %>
+
+                  <%= form.label('Name') %>
+                  <%= form.text_field(:name, class: "form-control") %>
+
+                  <%= form.label('Description', class: "col-form-label") %>
+                  <%= form.text_area(:description, class: "form-control") %>
+
+                <%= form.submit "Create New Event", class: "btn btn-block btn-outline-danger button-space" %>
+              <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <main class="container-fluid">
         <%# ALERTS %>
@@ -56,6 +95,8 @@
 
       <%= yield %>
     </main>
+
+    <%# console %>
 
   </body>
 </html>

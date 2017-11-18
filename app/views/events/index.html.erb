@@ -10,7 +10,6 @@
       <th>Location</th>
       <th>Description</th>
       <th>User</th>
-      <th>Leader</th>
       <th>Date</th>
       <th>Start time</th>
       <th>End time</th>
@@ -25,8 +24,7 @@
         <td><%= event.name %></td>
         <td><%= event.location %></td>
         <td><%= event.description %></td>
-        <td><%= event.user %></td>
-        <td><%= event.leader %></td>
+        <td><%= event.user.full_name %></td>
         <td><%= event.date %></td>
         <td><%= event.start_time %></td>
         <td><%= event.end_time %></td>
