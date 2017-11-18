@@ -24,7 +24,8 @@ super_user = User.create(
   first_name: 'Cow',
   last_name: 'Fun',
   email: 'cowfun@mail.ru',
-  password: PASSWORD
+  password: PASSWORD,
+  is_admin: true
 )
 
 10.times.each do
@@ -75,3 +76,4 @@ events = Event.all
 puts Cowsay.say("Created #{users.count} users", :tux)
 puts Cowsay.say("Created #{events.count} events", :tux)
 puts Cowsay.say("Created #{guests.count} guests", :tux)
+puts "Login as admin user with #{super_user.email} and password of '#{PASSWORD}'!"
