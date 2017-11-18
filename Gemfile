@@ -31,6 +31,7 @@ gem 'bootstrap', '~> 4.0.0.beta'
 gem 'jquery-rails'
 gem 'simple_calendar', '~> 2.0'
 gem 'simple_form'
+gem 'letter_opener'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
