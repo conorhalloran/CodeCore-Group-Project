@@ -32,6 +32,9 @@ gem 'jquery-rails'
 gem 'simple_calendar', '~> 2.0'
 gem 'simple_form'
 gem 'letter_opener'
+gem 'pry' # pry gem itself
+gem 'pry-rails' # a gem that integrates pry with rails seamlessly
+gem 'hirb'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
