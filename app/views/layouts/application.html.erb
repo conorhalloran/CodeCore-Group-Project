@@ -28,6 +28,7 @@
           <% if user_signed_in? %>
           <div class="form-inline">
             <button
+              id="new_event_btn"
               type="button"
               class="btn btn-outline-danger button-space-sides"
               data-toggle="modal"
@@ -58,16 +59,33 @@
             </button>
           </div>
           <div class="modal-body">
-              <%= form_for @new_event do |form| %>
-
-                  <%= form.label('Name') %>
-                  <%= form.text_field(:name, class: "form-control") %>
-
-                  <%= form.label('Description', class: "col-form-label") %>
-                  <%= form.text_area(:description, class: "form-control") %>
-
-                <%= form.submit "Create New Event", class: "btn btn-block btn-outline-danger button-space" %>
+              <%= simple_form_for @new_event do |form| %>
+                <%= form.input :event_type %>
+                <%= form.input :name %>
+                <%= form.input :location %>
+                <%= form.input :description %>
+                <%= form.input :date %>
+                <%= form.input :start_time %>
+                <%= form.input :end_time %>
+                <%= form.submit({class: "btn btn-primary"}) %>
               <% end %>
+
+              <%#= form.text_field(:name, class: "form-control") %>
+
+              <%#= form.label('Description', class: "col-form-label") %>
+              <%#= form.text_area(:description, class: "form-control") %>
+
+              <%#= form.submit "Create New Event", class: "btn btn-block btn-outline-danger button-space" %>
+
+
+              <%#= simple_form_for @product do |form| %>
+              <%#= form.input :title %>
+              <%#= form.input :description %>
+              <%#= form.input :price %>
+              <%#= form.input :image %>
+              <%#= form.association :tags, input_html: {multiple: true, class: 'chosen-select'} %>
+              <%#= form.submit({class: "btn btn-primary"}) %>
+              <%# end %>
           </div>
         </div>
       </div>
