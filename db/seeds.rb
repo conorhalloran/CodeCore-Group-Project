@@ -16,7 +16,7 @@ EVENT_TYPES = [
   'other'
 ]
 
-
+Event.destroy_all
 User.destroy_all
 
 super_user = User.create(
