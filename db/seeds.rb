@@ -1,12 +1,13 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 PASSWORD = '123abc'
+EVENT_TYPES = [
+  'canvas',
+  'slideshow',
+  'phonebank',
+  'meeting',
+  'research',
+  'other'
+]
+
 
 User.destroy_all
 
@@ -30,4 +31,23 @@ end
 
 users = User.all
 
+
+
+10.times.each do
+  start_time = Faker::Time.forward(rand(20), :morning)
+  Event.create(
+    event_type: EVENT_TYPES.sample,
+    name: Faker::Ancient.primordial,
+    location: Faker::StarTrek.location,
+    description: Faker::Hacker.say_something_smart,
+    date: Faker::Date.between(Date.today, 1.month.from_now),
+    start_time: start_time,
+    end_time: (start_time + 2.hours),
+    user: users.sample
+  )
+end
+
+events = Event.all
+
 puts Cowsay.say("Created #{users.count} users", :tux)
+puts Cowsay.say("Created #{events.count} events", :tux)
