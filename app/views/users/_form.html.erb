@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 <%= simple_form_for(@user) do |f| %>
     <%= f.error_notification %>
 
     <div>
         <%= f.input :first_name %>
         <%= f.input :last_name %>
+=======
+<%= simple_form_for(@event) do |f| %>
+    <%= f.error_notification %>
+
+    <div>
+        <%= f.input :name %>
+>>>>>>> Set up users controller
         <%= f.input :email %>
         <%= f.input :phone_number %>
         <%= f.input :password %>
