@@ -2,10 +2,11 @@
     <div class = 'col-4'>
       <div id="search-form-and-result">
         <% if @search_events.blank? %>
-          <h4>Hmm..looks like there are no events happening in "<%= params[:search] %>".</h4>
+          <h4>Hmm... looks like there are no events containing "<%= params[:search] %>".</h4>
         <% end %>
 
         <% if params[:search].present? %>
+          <h4>Events found containing "<%= params[:search] %>"</>
           <% @search_events.each do |result| %>
             <ul>
               <li>Event Name: <%= result.name %></li>
