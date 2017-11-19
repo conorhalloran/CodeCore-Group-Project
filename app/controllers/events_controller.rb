@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_action :authorize_user!, except: [:index, :show, :new, :create]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user!, except: [:index, :show, :new, :create, :update]
   before_action :new_event
   before_action :current_user
 
@@ -32,7 +32,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to root_path, notice: 'Event was successfully created.' }
+        format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -44,7 +44,6 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    return head :unauthorized unless can?(:update, @event)
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }

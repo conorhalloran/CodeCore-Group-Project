@@ -36,9 +36,9 @@
               New Event
               </button>
             </div>
-          <span class="navbar-text">
-            Hello, <%= current_user.first_name %>
-          </span>
+            <span class="navbar-text">
+              Hello, <%= current_user.first_name %>
+            </span>
 
             <% if current_user.is_admin? %>
               <span class="navbar-text">
@@ -50,6 +50,13 @@
             <%= link_to('Sign Out', session_path, method: :delete, :class => 'nav-link') %>
           </li>
 
+        <% else %>
+          <li class="nav-item">
+            <%= link_to('Sign In', new_session_path, :class => 'nav-link') %>
+          </li>
+          <li class="nav-item">
+            <%= link_to('Sign Up', new_user_path, :class => 'nav-link') %>
+          </li>
         <% end %>
         </ul>
       </div>

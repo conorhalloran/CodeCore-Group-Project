@@ -26,6 +26,7 @@ super_user = User.create(
   first_name: 'Cow',
   last_name: 'Fun',
   email: 'cowfun@mail.ru',
+  phone_number: 123456789,
   password: PASSWORD,
   is_admin: true
 )
@@ -33,10 +34,12 @@ super_user = User.create(
 10.times.each do
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
+  phone_number = Faker::PhoneNumber.cell_phone
   User.create(
     first_name: first_name,
     last_name: last_name,
     email: "#{first_name.downcase}.#{last_name.downcase}@example.com",
+    phone_number: phone_number,
     password: PASSWORD
   )
 end
