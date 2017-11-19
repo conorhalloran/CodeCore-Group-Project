@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :events, dependent: :nullify
+
   before_save { self.email = email.downcase }
   validates :first_name, presence: true
   validates :last_name, presence: true
