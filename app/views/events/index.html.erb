@@ -6,7 +6,7 @@
         <% end %>
 
         <% if params[:search].present? %>
-          <h4>Events found containing "<%= params[:search] %>"</>
+          <h4>Events found containing "<%= params[:search] %>"</h4>
           <% @search_events.each do |result| %>
             <ul>
               <li>Event Name: <%= result.name %></li>
