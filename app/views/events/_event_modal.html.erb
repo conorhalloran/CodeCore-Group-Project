@@ -16,15 +16,25 @@
           <p><strong>Date :</strong> <%= event.date.strftime("%B %d, %Y, %A") %></p>
           <p><strong>Start :</strong> <%= event.start_time.strftime("%H:%M") %></p>
           <p><strong>End :</strong> <%= event.end_time.strftime("%H:%M") %></p>
-          <%= link_to 'Edit', edit_event_path(event) %>
-          <%= link_to 'Delete',
-            event_path(event),
-            data: {confirm: 'Are you sure?'},
-            method: :delete
-          %>
+          <div class = 'text-right'>
+            <%= link_to 'Edit', edit_event_path(event), :class => 'btn btn-outline-dark' %>
+            <%= link_to 'Delete',
+              event_path(event),
+              :class => 'btn btn-outline-dark',
+              data: {confirm: 'Are you sure?'},
+              method: :delete
+            %>
+          </div>
         </div>
         <div class='col-md-6'>
-          <p> Hello World </p>
+          <div class='group-members'>
+            <p class='group-heading'> Group Members </p>
+            <div class="d3-2">
+              <div class="d4">
+                <div class="d5"><%= event.user.full_name %> | <%= event.user.email %></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
