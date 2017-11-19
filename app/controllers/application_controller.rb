@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :new_event
 
   def user_signed_in?
-    session[:user_id].present?
+    current_user.present?
   end
   helper_method :user_signed_in?
 

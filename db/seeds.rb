@@ -20,11 +20,14 @@ Event.destroy_all
 User.destroy_all
 Guest.destroy_all
 
+
+
 super_user = User.create(
   first_name: 'Cow',
   last_name: 'Fun',
   email: 'cowfun@mail.ru',
-  password: PASSWORD
+  password: PASSWORD,
+  is_admin: true
 )
 
 10.times.each do
@@ -54,10 +57,8 @@ end
 
 guests = Guest.all
 
-
-
 10.times.each do
-  start_time = Faker::Time.forward(rand(20), :morning)
+  start_time = Faker::Date.between(Date.today, 1.month.from_now)
   Event.create(
     event_type: EVENT_TYPES.sample,
     name: Faker::Ancient.primordial,
@@ -65,7 +66,7 @@ guests = Guest.all
     description: Faker::Hacker.say_something_smart,
     date: Faker::Date.between(Date.today, 1.month.from_now),
     start_time: start_time,
-    end_time: (start_time + 2.hours),
+    end_time: start_time,
     user: users.sample
   )
 end
@@ -75,3 +76,4 @@ events = Event.all
 puts Cowsay.say("Created #{users.count} users", :tux)
 puts Cowsay.say("Created #{events.count} events", :tux)
 puts Cowsay.say("Created #{guests.count} guests", :tux)
+puts "Login as admin user with #{super_user.email} and password of '#{PASSWORD}'!"

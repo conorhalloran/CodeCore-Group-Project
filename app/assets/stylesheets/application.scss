@@ -14,11 +14,10 @@
  *= require_self
  */
 
- main {
-     padding: 15px;
- }
 
  @import "bootstrap";
+
+
 
 #new_event_btn {
   margin-right: 10px;
@@ -27,7 +26,8 @@
  .simple-calendar {
    .day {
      width: 200px;
-     height: 200px;
+     height: 16vh;
+     border: 1px solid rgba(100, 100, 100, 0.5);
    }
 
    .wday-0 {}
@@ -54,3 +54,8 @@
  .hide {
    display: none;
  }
+
+ .event-button {
+
+ }
+
