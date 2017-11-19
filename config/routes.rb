@@ -4,5 +4,7 @@ Rails.application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
 
+  get '/dashboards/index', to: 'dashboards#index'
+
   root "events#index"
 end
