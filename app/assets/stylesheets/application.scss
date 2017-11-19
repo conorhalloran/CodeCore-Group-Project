@@ -38,7 +38,6 @@
    .wday-4 {}
    .wday-5 {}
    .wday-6 {}
-
    .today {
      font-weight: bold;
      background-color: rgba(93, 225, 239, 0.5);
@@ -129,7 +128,14 @@
   border: none;
 }
 
+
 .cal-btn{
-  border: none; 
+  border: none;
   background-color: transparent;
+}
+ccepting dashboard
+
+
+.subsection{
+  text-align: center;
 }
