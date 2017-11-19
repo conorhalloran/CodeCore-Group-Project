@@ -20,7 +20,8 @@
 
 
 #new_event_btn {
-  margin-right: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
  .simple-calendar {
@@ -41,6 +42,10 @@
    .today {
      font-weight: bold;
      background-color: rgba(93, 225, 239, 0.5);
+   }
+
+   .modal-body > p {
+     font-weight: normal;
    }
    .past {}
    .future {}
@@ -63,7 +68,16 @@
  }
 
  .event-button {
+   border-radius: 5px;
+   background-color: rgba(93, 225, 239, 0.9);
+   color: black;
+   border: none;
+   transition: 0.25s;
+ }
 
+ .event-button:hover {
+   color: white;
+   background-color: rgba(34, 106, 114, 0.9);
  }
 
  .navbar{
@@ -71,7 +85,7 @@
  }
 
  .nav-link{
-   color: rgba(120, 120, 120, 1);
+   color: rgba(220, 220, 220, 1);
  }
 
  .nav-link:hover{
@@ -80,18 +94,18 @@
 
  .calendar-heading{
    text-align: center;
+   margin: 20px;
  }
 
 .week_name{
   text-align: center;
 }
 
-.calendar-title{
+.calendar-heading .calendar-title{
   font-size: 20px;
   font-weight: bold;
 }
 
-.calendar-heading{
-  margin: 20px;
+.subsection{
+  text-align: center;
 }
-

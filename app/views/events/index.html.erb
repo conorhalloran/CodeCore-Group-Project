@@ -32,7 +32,7 @@
       </div>
     </div>
 
-    <div>
+    <div class = 'subsection'>
       <button
         id="new_event_btn"
         type="button"
@@ -40,9 +40,8 @@
         data-toggle="modal"
         data-target='#<%= event.id %>'
         data-whatever="@mdo"
-      ><%= event.name %>
-    </button>
-      <p><%= event.event_type %></p>
+      ><%= event.name %> | <%= event.event_type %>
+      </button>
     </div>
   <% end %>
 <% end %>
