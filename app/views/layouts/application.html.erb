@@ -42,7 +42,9 @@
             </span>
 
             <% if current_user.is_admin? %>
-            <%= link_to 'Dashboard', admin_dashboard_index_path %>
+            <li class="nav-item">
+            <%= link_to 'Dashboard', admin_dashboard_index_path, :class => 'nav-link' %>
+            </li>
               <span class="navbar-text">
                 &nbsp; Admin
               </span>
