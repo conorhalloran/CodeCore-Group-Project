@@ -42,6 +42,10 @@
      font-weight: bold;
      background-color: rgba(93, 225, 239, 0.5);
    }
+
+   .modal-body > p {
+     font-weight: normal;
+   }
    .past {}
    .future {}
 
@@ -80,18 +84,16 @@
 
  .calendar-heading{
    text-align: center;
+   margin: 20px;
  }
 
 .week_name{
   text-align: center;
 }
 
-.calendar-title{
+
+
+.calendar-heading .calendar-title{
   font-size: 20px;
   font-weight: bold;
 }
-
-.calendar-heading{
-  margin: 20px;
-}
-
