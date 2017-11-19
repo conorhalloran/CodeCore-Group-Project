@@ -45,6 +45,7 @@
           </span>
 
             <% if current_user.is_admin? %>
+            <%= link_to 'Dashboard', admin_dashboard_index_path %>
               <span class="navbar-text">
                 Admin
               </span>
