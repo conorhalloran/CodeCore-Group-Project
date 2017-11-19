@@ -34,7 +34,7 @@
               type="button"
               class="btn btn-outline-danger button-space-sides"
               data-toggle="modal"
-              data-target="#exampleModal"
+              data-target="#newEventModal"
               data-whatever="@mdo"
             >
             New Event
@@ -46,7 +46,7 @@
 
             <% if current_user.is_admin? %>
               <span class="navbar-text">
-                Admin
+                &nbsp; Admin
               </span>
             <% end %>
 
@@ -59,11 +59,11 @@
       </div>
     </nav>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="newEventModal" tabindex="-1" role="dialog" aria-labelledby="newEventModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">New Event</h5>
+            <h5 class="modal-title" id="newEventModalLabel">New Event</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -79,23 +79,6 @@
                 <%= form.input :end_time %>
                 <%= form.submit({class: "btn btn-primary"}) %>
               <% end %>
-
-              <%#= form.text_field(:name, class: "form-control") %>
-
-              <%#= form.label('Description', class: "col-form-label") %>
-              <%#= form.text_area(:description, class: "form-control") %>
-
-              <%#= form.submit "Create New Event", class: "btn btn-block btn-outline-danger button-space" %>
-
-
-              <%#= simple_form_for @product do |form| %>
-              <%#= form.input :title %>
-              <%#= form.input :description %>
-              <%#= form.input :price %>
-              <%#= form.input :image %>
-              <%#= form.association :tags, input_html: {multiple: true, class: 'chosen-select'} %>
-              <%#= form.submit({class: "btn btn-primary"}) %>
-              <%# end %>
           </div>
         </div>
       </div>
