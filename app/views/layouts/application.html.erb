@@ -24,18 +24,19 @@
           </li>
 
           <% if user_signed_in? %>
-            <div class="form-inline">
-              <button
-                id="new_event_btn"
-                type="button"
-                class="btn btn-outline-danger button-space-sides"
-                data-toggle="modal"
-                data-target="#newEventModal"
-                data-whatever="@mdo"
-              >
-              New Event
-              </button>
-            </div>
+
+          <div class="add-event">
+            <button
+              type="button"
+              class="nav-link cal-btn"
+              data-toggle="modal"
+              data-target="#newEventModal"
+              data-whatever="@mdo"
+            >
+            New Event
+            </button>
+          </div>
+
             <span class="navbar-text">
               Hello, <%= current_user.first_name %>
             </span>

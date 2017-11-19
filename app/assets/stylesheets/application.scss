@@ -85,7 +85,7 @@
  }
 
  .nav-link{
-   color: rgba(220, 220, 220, 1);
+   color: rgba(140, 140, 140, 1);
  }
 
  .nav-link:hover{
@@ -94,7 +94,7 @@
 
  .calendar-heading{
    text-align: center;
-   margin: 20px;
+   margin-top: 20px;
  }
 
 .week_name{
@@ -104,8 +104,32 @@
 .calendar-heading .calendar-title{
   font-size: 20px;
   font-weight: bold;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .subsection{
   text-align: center;
+}
+
+.add-event{
+  text-align: center;
+}
+
+.btn-outline-success{
+  border: none;
+}
+
+.btn-outline-success:hover{
+  background-color: none;
+}
+
+.btn-outline-success{
+  background-color: none;
+  border: none;
+}
+
+.cal-btn{
+  border: none; 
+  background-color: transparent;
 }
