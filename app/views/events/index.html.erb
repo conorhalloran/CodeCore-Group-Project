@@ -1,21 +1,32 @@
-<img id="original-text" alt="0.8em" src="/assets/giphy.gif" onclick="smallestText()" />
-<img id="smallest-text" alt="0.8em" src="/assets/giphy.gif" onclick="originalText()" />
-<img id="largest-text" alt="1.1em" src="/assets/giphy.gif" onclick="largestText()" />
+  <div class = 'row'>
+    <div class = 'col-4'>
+      <div id="search-form-and-result">
+        <% if @search_events.blank? %>
+          <h4>Hmm..looks like there are no events happening in "<%= params[:search] %>".</h4>
+        <% end %>
 
-<div id="search-form-and-result">
-  <% if @search_events.blank? %>
-    <h4>Hmm..looks like there are no events happening in "<%= params[:search] %>".</h4>
-  <% end %>
+        <% if params[:search].present? %>
+          <% @search_events.each do |result| %>
+            <ul>
+              <li>Event Name: <%= result.name %></li>
+              Event Date: <%= result.date.strftime("%B %d, %Y, %A") %><br>
+              Location: <%= result.location %>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
 
-  <% if params[:search].present? %>
-    <% @search_events.each do |result| %>
-      <ul>
-        <li>Event Name: <%= result.name %></li>
-        Event Date: <%= result.date.strftime("%B %d, %Y, %A") %><br>
-        Location: <%= result.location %>
-      </ul>
-    <% end %>
-  <% end %>
+    <div class = 'col-8'>
+      <p style="text-align: center; padding-top: 20px;"><strong> Instructions </strong></p>
+      <p>
+        Welcome to Force of Nature's event sign up application. Events can be added
+        by clicking the New Event button on the page. Events can be joined by
+        clicking the sign up button within the events information. Events can also
+        be filtered by searching for the events location. Size of the letters can be
+        changed by clicking on the corresponding polar bear on the footer.
+      </p>
+    </div>
 </div>
 
 <%= month_calendar events: @events do |date, events| %>
@@ -23,35 +34,7 @@
 
   <% events.each do |event| %>
     <%# MODAL %>
-    <%= render 'event_modal', event: event %>
-    <div class="modal fade" id='<%= event.id %>' tabindex="-1" role="dialog" aria-labelledby='<%= event.id %>Label' aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id='<%= event.id %>Label'><%= event.name %></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>Event Type : <%= event.event_type.titleize %></p>
-            <p>Name : <%= event.name %></p>
-            <p>Location : <%= event.location %></p>
-            <p>Additional Info : <%= event.description %></p>
-            <p>Leader : <%= event.user.full_name %></p>
-            <p>Date : <%= event.date.strftime("%B %d, %Y, %A") %></p>
-            <p>Start Time : <%= event.start_time.strftime("%H:%M") %></p>
-            <p>End Time : <%= event.end_time.strftime("%H:%M") %></p>
-            <%= link_to 'Edit', edit_event_path(event) %>
-            <%= link_to 'Delete',
-              event_path(event),
-              data: {confirm: 'Are you sure?'},
-              method: :delete
-            %>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= render './modals/event_modal', event: event %>
 
     <div class = 'subsection'>
       <button
@@ -67,3 +50,7 @@
     <br>
   <% end %>
 <% end %>
+
+<img id="original-text" alt="0.8em" src="/assets/giphy.gif" onclick="smallestText()" />
+<img id="smallest-text" alt="0.8em" src="/assets/giphy.gif" onclick="originalText()" />
+<img id="largest-text" alt="1.1em" src="/assets/giphy.gif" onclick="largestText()" />

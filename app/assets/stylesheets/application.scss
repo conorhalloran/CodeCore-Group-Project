@@ -153,19 +153,20 @@
   border-right: thin rgba(200, 200, 200, 0.5) solid;
 }
 
-.event-information > p{
+.event-box{
+  padding-top: 10px;
+  list-style: none;
+  height: 90%;
+  padding-left: 10px;
+  padding-right: 10px;
   font-weight: normal;
-}
-
-.group-members{
-  height: 80%;
-  border: thin rgba(200, 200, 200, 0.5) solid;
 }
 
 .group-heading{
   font-weight: bold;
   text-align: center;
   padding-top: 15px;
+  margin-top: 100px;
   height: 40px;
   border-bottom: thin rgba(200, 200, 200, 0.5) solid;
 }
@@ -174,11 +175,12 @@
     height: 75%;
     overflow: hidden;
     box-sizing: border-box;
-    padding-top: 50px;
+    margin-top: 40px;
     width: 90%;
     position: absolute;
     top: 0;
     font-weight: normal;
+    border: thin rgba(200, 200, 200, 0.5) solid;
 }
 
 .d4
@@ -223,4 +225,25 @@
 #largest-text {
   width: 110px;
   height: 110px
+}
+
+// DASHBOARD
+
+.carousel-inner{
+  border-bottom: thin rgba(200, 200, 200, 0.5) solid;
+  padding-bottom: 20px;
+}
+
+.modal-team{
+  border-right: thin rgba(200, 200, 200, 0.5) solid;
+}
+
+.team-box{
+  border: thin rgba(200, 200, 200, 0.5) solid;
+  padding-top: 10px;
+  list-style: none;
+  height: 350px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: normal;
 }

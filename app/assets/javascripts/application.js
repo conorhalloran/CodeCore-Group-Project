@@ -13,7 +13,7 @@
 //= require rails-ujs
 //= require jquery3
 //= require popper
-//= require bootstrap-sprockets 
+//= require bootstrap-sprockets
 //= require_tree .
 
 $(function(){
@@ -41,6 +41,14 @@ $(function(){
   });
 
   $("#smallest-text").addEvent("click", function() {smallestText();
+  });
+
+  $( ".important-docs" ).click(function() {
+    $( ".im-docs" ).toggle('hide')
+  });
+
+  $( ".team-docs" ).click(function() {
+    $( ".docs" ).toggle('hide')
   });
 
 })
