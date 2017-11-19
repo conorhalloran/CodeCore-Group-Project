@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :current_user
 
   # GET /tasks
   # GET /tasks.json
@@ -10,6 +11,7 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    # user = User.find params[:user_id]
   end
 
   # GET /tasks/new
@@ -21,11 +23,13 @@ class TasksController < ApplicationController
   def edit
   end
 
+
+
   # POST /tasks
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-    @taks.assigned_by = current_user
+    @task.assigned_by = current_user.id
 
     respond_to do |format|
       if @task.save
