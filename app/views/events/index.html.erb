@@ -1,24 +1,20 @@
-<img id="original-text" alt="0.8em" src="/assets/giphy.gif" onclick="smallestText()" />
-<img id="smallest-text" alt="0.8em" src="/assets/giphy.gif" onclick="originalText()" />
-<img id="largest-text" alt="1.1em" src="/assets/giphy.gif" onclick="largestText()" />
-
-<div id="search-form-and-result">
-  <% if @search_events.blank? %>
-    <h4>Hmm..looks like there are no events happening in "<%= params[:search] %>".</h4>
-  <% end %>
-
-  <% if params[:search].present? %>
-    <% @search_events.each do |result| %>
-      <ul>
-        <li>Event Name: <%= result.name %></li>
-        Event Date: <%= result.date.strftime("%B %d, %Y, %A") %><br>
-        Location: <%= result.location %>
-      </ul>
-    <% end %>
-  <% end %>
-
   <div class = 'row'>
     <div class = 'col-4'>
+      <div id="search-form-and-result">
+        <% if @search_events.blank? %>
+          <h4>Hmm..looks like there are no events happening in "<%= params[:search] %>".</h4>
+        <% end %>
+
+        <% if params[:search].present? %>
+          <% @search_events.each do |result| %>
+            <ul>
+              <li>Event Name: <%= result.name %></li>
+              Event Date: <%= result.date.strftime("%B %d, %Y, %A") %><br>
+              Location: <%= result.location %>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
     </div>
 
     <div class = 'col-8'>
@@ -54,3 +50,7 @@
     <br>
   <% end %>
 <% end %>
+
+<img id="original-text" alt="0.8em" src="/assets/giphy.gif" onclick="smallestText()" />
+<img id="smallest-text" alt="0.8em" src="/assets/giphy.gif" onclick="originalText()" />
+<img id="largest-text" alt="1.1em" src="/assets/giphy.gif" onclick="largestText()" />
