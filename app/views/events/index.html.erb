@@ -1,20 +1,42 @@
   <div class = 'row'>
     <div class = 'col-4'>
+
+      <div class = 'location-search'>
+
+      <p style="text-align: center; padding-top: 20px;"><strong> Location Search </strong></p>
+
+      <div style='text-align: center'>
+        <%= form_tag(events_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search Here" %>
+          <%= submit_tag "Search", :name => nil %>
+        <% end %>
+      </div>
+
       <div id="search-form-and-result">
         <% if @search_events.blank? %>
-          <h4>Hmm... looks like there are no events containing "<%= params[:search] %>".</h4>
+          <h4 style='padding: 10px;'>Hmm... looks like there are no events containing "<%= params[:search] %>".</h4>
         <% end %>
 
         <% if params[:search].present? %>
           <h4>Events found containing "<%= params[:search] %>"</h4>
           <% @search_events.each do |result| %>
             <ul>
-              <li>Event Name: <%= result.name %></li>
+              <button
+                type="button"
+                class="nav-link cal-btn"
+                data-toggle="modal"
+                data-target='#<%= result.id %>'
+                data-whatever="@mdo"
+                style='padding-left: 0;'
+              >
+              <span style='color: black'>Event Name:</span> <%= result.name %>
+            </button>
               Event Date: <%= result.date.strftime("%B %d, %Y, %A") %><br>
               Location: <%= result.location %>
             </ul>
           <% end %>
         <% end %>
+        </div>
       </div>
     </div>
 
@@ -51,7 +73,3 @@
     <br>
   <% end %>
 <% end %>
-
-<img id="original-text" alt="0.8em" src="/assets/giphy.gif" onclick="smallestText()" />
-<img id="smallest-text" alt="0.8em" src="/assets/giphy.gif" onclick="originalText()" />
-<img id="largest-text" alt="1.1em" src="/assets/giphy.gif" onclick="largestText()" />
