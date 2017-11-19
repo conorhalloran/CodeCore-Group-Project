@@ -24,4 +24,10 @@ $(function(){
   }
 
   slideFade($('.alert'));
+
+
+  $( "#team-1" ).click(function() {
+  console.log('sdfdsf')
+    $( "#team-members" ).toggle('hide')
+  });
 })

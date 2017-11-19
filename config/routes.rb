@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :dashboard, only: [:index]
   end
+  get '/dashboards/index', to: 'dashboards#index'
   root "events#index"
 end
