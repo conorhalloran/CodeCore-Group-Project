@@ -38,7 +38,9 @@
    .wday-5 {}
    .wday-6 {}
 
-   .today {}
+   .today {
+     background-color: rgba(93, 225, 239, 0.5)
+   }
    .past {}
    .future {}
 
@@ -53,4 +55,16 @@
 
  .event-button {
 
+ }
+
+ .navbar{
+   background-color: rgba(93, 225, 239, 0.9);
+ }
+
+ .nav-link{
+   color: rgba(120, 120, 120, 1);
+ }
+
+ .nav-link:hover{
+   color: rgba(220, 220, 220, 1);
  }
