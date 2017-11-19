@@ -80,4 +80,11 @@ class EventsController < ApplicationController
         redirect_to root_path
       end
     end
+
+    def authorize_user!
+      unless can?(:manage, @post)
+        flash[:alert] = "Access Denied!"
+        redirect_to root_path
+      end
+    end
 end
