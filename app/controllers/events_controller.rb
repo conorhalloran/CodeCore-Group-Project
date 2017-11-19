@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
   before_action :authorize_user!, except: [:index, :show, :new, :create]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :new_event
+  before_action :current_user
 
   # GET /events
   # GET /events.json
@@ -26,10 +28,11 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    @event.user = current_user
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to root_path, notice: 'Event was successfully created.' }
+        format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -63,28 +66,21 @@ class EventsController < ApplicationController
     end
   end
 
-    private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def event_params
-      params.require(:event).permit(:event_type, :name, :location, :description, :user_id, :leader_id, :date, :start_time, :end_time)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def event_params
+    params.require(:event).permit(:type, :name, :location, :description, :user_id, :leader_id, :date, :start_time, :end_time)
+  end
 
-    def authorize_user!
-      unless can?(:manage, @post)
-        flash[:alert] = "Access Denied!"
-        redirect_to root_path
-      end
+  def authorize_user!
+    unless can?(:manage, @event)
+      flash[:alert] = "Access Denied!"
+      redirect_to root_path
     end
-
-    def authorize_user!
-      unless can?(:manage, @post)
-        flash[:alert] = "Access Denied!"
-        redirect_to root_path
-      end
-    end
+  end
 end

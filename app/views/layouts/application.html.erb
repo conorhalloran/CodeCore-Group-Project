@@ -27,7 +27,6 @@
           </li>
 
           <% if user_signed_in? %>
-          <% if current_user.is_admin? %>
           <%= link_to 'Home', root_path %>
           <div class="form-inline">
             <button
@@ -47,7 +46,7 @@
 
             <% if current_user.is_admin? %>
               <span class="navbar-text">
-                Hello, Admin
+                Admin
               </span>
             <% end %>
 
