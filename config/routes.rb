@@ -12,7 +12,5 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
   end
   
-  get '/dashboards/index', to: 'dashboards#index'
-
   root "events#index"
 end
