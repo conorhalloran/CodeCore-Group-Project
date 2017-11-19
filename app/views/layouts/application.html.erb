@@ -27,20 +27,20 @@
           </li>
 
           <% if user_signed_in? %>
-          <div class="form-inline">
-            <button
-              id="new_event_btn"
-              type="button"
-              class="btn btn-outline-danger button-space-sides"
-              data-toggle="modal"
-              data-target="#newEventModal"
-              data-whatever="@mdo"
-            >
-            New Event
-            </button>
-          </div>
+            <div class="form-inline">
+              <button
+                id="new_event_btn"
+                type="button"
+                class="btn btn-outline-danger button-space-sides"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                data-whatever="@mdo"
+              >
+              New Event
+              </button>
+            </div>
           <span class="navbar-text">
-            Hello, <%= current_user.full_name %>
+            Hello, <%= current_user.first_name %>
           </span>
 
             <% if current_user.is_admin? %>
