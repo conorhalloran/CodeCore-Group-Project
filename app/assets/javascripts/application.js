@@ -27,7 +27,12 @@ $(function(){
 
 
   $( "#team-1" ).click(function() {
-  console.log('sdfdsf')
     $( "#team-members" ).toggle('hide')
   });
+
+  $( "#search-events-button" ).click(function() {
+  $( "#search-form-and-result" ).toggle('hide')
+  });
+
+
 })

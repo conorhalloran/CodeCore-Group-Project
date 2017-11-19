@@ -13,7 +13,7 @@ class EventsController < ApplicationController
 
     if params[:search]
       @search_events = @events.clone
-      @search_events = Event.search(params[:search]).order("created_at DESC")
+      @search_events = Event.search(params[:search]).order("created_at ASC")
     else
       render :index
     end

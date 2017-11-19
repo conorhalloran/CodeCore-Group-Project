@@ -1,20 +1,20 @@
-<%= form_tag(events_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search Here" %>
-    <%= submit_tag "Search", :name => nil %>
-<% end %>
+<%# <button id="search-events-button">Click to open/close search engine</button> %>
 
-<br>
-
-<% if params[:search].present? %>
-  <% @search_events.each do |result| %>
-    <h4>Events in: <%= result.location %></h4>
-    <ul>
-      <li>Event Name: <%= result.name %></li>
-      Event Date: <%= result.date.strftime("%B %d, %Y, %A") %>
-    </ul>
+<div id="search-form-and-result">
+  <% if @search_events.blank? %>
+    <h4>Hmm..looks like there are no events happening in "<%= params[:search] %>".</h4>
   <% end %>
-<% end %>
 
+  <% if params[:search].present? %>
+    <% @search_events.each do |result| %>
+      <ul>
+        <li>Event Name: <%= result.name %></li>
+        Event Date: <%= result.date.strftime("%B %d, %Y, %A") %><br>
+        Location: <%= result.location %>
+      </ul>
+    <% end %>
+  <% end %>
+</div>
 
 <%= month_calendar events: @events do |date, events| %>
   <%= date.day %>
@@ -22,6 +22,34 @@
   <% events.each do |event| %>
     <%# MODAL %>
     <%= render 'event_modal', event: event %>
+    <div class="modal fade" id='<%= event.id %>' tabindex="-1" role="dialog" aria-labelledby='<%= event.id %>Label' aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id='<%= event.id %>Label'><%= event.name %></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Event Type : <%= event.event_type.titleize %></p>
+            <p>Name : <%= event.name %></p>
+            <p>Location : <%= event.location %></p>
+            <p>Additional Info : <%= event.description %></p>
+            <p>Leader : <%= event.user.full_name %></p>
+            <p>Date : <%= event.date.strftime("%B %d, %Y, %A") %></p>
+            <p>Start Time : <%= event.start_time.strftime("%H:%M") %></p>
+            <p>End Time : <%= event.end_time.strftime("%H:%M") %></p>
+            <%= link_to 'Edit', edit_event_path(event) %>
+            <%= link_to 'Delete',
+              event_path(event),
+              data: {confirm: 'Are you sure?'},
+              method: :delete
+            %>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class = 'subsection'>
       <button
@@ -34,5 +62,6 @@
       ><%= event.name.truncate(10) %> | <%= event.event_type %>
       </button>
     </div>
+    <br>
   <% end %>
 <% end %>
