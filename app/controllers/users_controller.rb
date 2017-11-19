@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
     before_action :current_user
+    before_action :authorize_user!, except: [:new, :create]
 
     def index
         @user = User.all
@@ -56,5 +57,12 @@ class UsersController < ApplicationController
 
         def user_params
             params.require(:user).permit(:first_name, :last_name, :email, :phone_number, :password, :password_confirmation)
+        end
+
+        def authorize_user!
+            unless user_signed_in?
+                flash[:alert] = "Must be signed in"
+                redirect_to  new_session_path
+            end
         end
 end

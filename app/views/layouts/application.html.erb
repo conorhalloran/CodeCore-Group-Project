@@ -62,6 +62,9 @@
             <span class="navbar-text">
               Hello, <%= current_user.first_name %>
             </span>
+            <li class="nav-item">
+            <%= link_to 'Profile', users_path, :class => 'nav-link' %>
+            </li>
 
             <% if current_user.is_admin? %>
             <li class="nav-item">
