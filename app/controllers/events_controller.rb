@@ -22,6 +22,8 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @tasks = @question.tasks.order(created_at: :desc)
+    @task = Task.new
   end
 
   # GET /events/new
