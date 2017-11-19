@@ -20,7 +20,8 @@
 
 
 #new_event_btn {
-  margin-right: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
  .simple-calendar {
@@ -67,7 +68,16 @@
  }
 
  .event-button {
+   border-radius: 5px;
+   background-color: rgba(93, 225, 239, 0.9);
+   color: black;
+   border: none;
+   transition: 0.25s;
+ }
 
+ .event-button:hover {
+   color: white;
+   background-color: rgba(34, 106, 114, 0.9);
  }
 
  .navbar{
@@ -75,7 +85,7 @@
  }
 
  .nav-link{
-   color: rgba(120, 120, 120, 1);
+   color: rgba(220, 220, 220, 1);
  }
 
  .nav-link:hover{
@@ -91,9 +101,11 @@
   text-align: center;
 }
 
-
-
 .calendar-heading .calendar-title{
   font-size: 20px;
   font-weight: bold;
+}
+
+.subsection{
+  text-align: center;
 }
