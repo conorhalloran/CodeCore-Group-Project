@@ -27,7 +27,41 @@ $(function(){
 
 
   $( "#team-1" ).click(function() {
-  console.log('sdfdsf')
     $( "#team-members" ).toggle('hide')
   });
+
+  $( "#search-events-button" ).click(function() {
+  $( "#search-form-and-result" ).toggle('hide')
+  });
+
+  $("#largest-text").addEvent("click", function() {largestText();
+  });
+
+  $("#original-text").addEvent("click", function() {originalText();
+  });
+
+  $("#smallest-text").addEvent("click", function() {smallestText();
+  });
+
 })
+
+function largestText() {
+  if (document.body.style.fontSize == "") {
+    document.body.style.fontSize = "1.0em";
+  }
+  document.body.style.fontSize = "1.2em";
+}
+
+function smallestText() {
+  if (document.body.style.fontSize == "") {
+    document.body.style.fontSize = "1.0em";
+  }
+  document.body.style.fontSize = "0.9em";
+}
+
+function originalText() {
+  if (document.body.style.fontSize == "") {
+    document.body.style.fontSize = "1.0em";
+  }
+  document.body.style.fontSize = "1.0em";
+}

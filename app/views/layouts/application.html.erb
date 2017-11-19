@@ -19,6 +19,15 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item">
+              <%= form_tag(events_path, :method => "get", id: "search-form") do %>
+                <%= text_field_tag :search, params[:search], placeholder: "Search Here" %>
+                <%= submit_tag "Search", :name => nil %>
+              <% end %>
+
+          </li>
+
           <li class="nav-item">
             <a class="nav-link" href="https://slack.com/"><%= image_tag 'slack.svg', style: 'width: 70px;' %></a>
           </li>
