@@ -39,9 +39,9 @@
               New Event
               </button>
             </div>
-          <span class="navbar-text">
-            Hello, <%#= current_user.full_name %>
-          </span>
+            <span class="navbar-text">
+              Hello, <%#= current_user.full_name %>
+            </span>
 
             <% if current_user.is_admin? %>
               <span class="navbar-text">
@@ -52,6 +52,8 @@
           <li class="nav-item">
             <%= link_to('Sign Out', session_path, method: :delete, :class => 'nav-link') %>
           </li>
+
+        <% else %>
 
         <% end %>
         </ul>
