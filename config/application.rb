@@ -27,5 +27,7 @@ module GroupProject
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.beginning_of_week = :sunday
+    config.time_zone = 'Pacific Time (US & Canada)'
   end
 end
