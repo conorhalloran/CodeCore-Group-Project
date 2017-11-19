@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   extend FriendlyId
-  friendly_id :name, use: [:slugged, :history :finders]
+  friendly_id :name, use: [:slugged, :history, :finders]
 
   belongs_to :user
 
