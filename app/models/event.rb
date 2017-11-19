@@ -4,7 +4,22 @@ class Event < ApplicationRecord
 
   belongs_to :user
 
+  validates :event_type, {
+    presence: true
+  }
 
+  validates :name, {
+    presence: true
+  }
+
+  validates :location, {
+    presence: true
+  }
+
+  validates :description, {
+    presence: true
+  }
+  
 
   # def to_param
   #   "#{id}-#{title}".parameterize

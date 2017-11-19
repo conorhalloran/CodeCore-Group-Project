@@ -1,4 +1,6 @@
-<%# <button id="search-events-button">Click to open/close search engine</button> %>
+<img id="original-text" alt="0.8em" src="/assets/giphy.gif" onclick="smallestText()" />
+<img id="smallest-text" alt="0.8em" src="/assets/giphy.gif" onclick="originalText()" />
+<img id="largest-text" alt="1.1em" src="/assets/giphy.gif" onclick="largestText()" />
 
 <div id="search-form-and-result">
   <% if @search_events.blank? %>
