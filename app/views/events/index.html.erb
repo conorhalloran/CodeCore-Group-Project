@@ -16,6 +16,21 @@
       </ul>
     <% end %>
   <% end %>
+
+  <div class = 'row'>
+    <div class = 'col-4'>
+    </div>
+
+    <div class = 'col-8'>
+      <p style="text-align: center; padding-top: 20px;"><strong> Instructions </strong></p>
+      <p>
+        Welcome to Force of Nature's event sign up application. Events can be added
+        by clicking the New Event button on the page. Events can be joined by
+        clicking the sign up button within the events information. Events can also
+        be filtered by searching for the events location. Size of the letters can be
+        changed by clicking on the corresponding polar bear on the footer.
+      </p>
+    </div>
 </div>
 
 <%= month_calendar events: @events do |date, events| %>
@@ -23,35 +38,7 @@
 
   <% events.each do |event| %>
     <%# MODAL %>
-    <%= render 'event_modal', event: event %>
-    <div class="modal fade" id='<%= event.id %>' tabindex="-1" role="dialog" aria-labelledby='<%= event.id %>Label' aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id='<%= event.id %>Label'><%= event.name %></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>Event Type : <%= event.event_type.titleize %></p>
-            <p>Name : <%= event.name %></p>
-            <p>Location : <%= event.location %></p>
-            <p>Additional Info : <%= event.description %></p>
-            <p>Leader : <%= event.user.full_name %></p>
-            <p>Date : <%= event.date.strftime("%B %d, %Y, %A") %></p>
-            <p>Start Time : <%= event.start_time.strftime("%H:%M") %></p>
-            <p>End Time : <%= event.end_time.strftime("%H:%M") %></p>
-            <%= link_to 'Edit', edit_event_path(event) %>
-            <%= link_to 'Delete',
-              event_path(event),
-              data: {confirm: 'Are you sure?'},
-              method: :delete
-            %>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= render './modals/event_modal', event: event %>
 
     <div class = 'subsection'>
       <button
