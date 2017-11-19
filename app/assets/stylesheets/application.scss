@@ -133,7 +133,6 @@
   border: none;
 }
 
-
 .cal-btn{
   border: none;
   background-color: transparent;
@@ -143,8 +142,15 @@
   text-align: center;
 }
 
+// Modal Stuff
+
+// .modal {
+//   width: 75% !important;
+//   height: 75% !important;
+// }
+
 .event-information{
-  border: thin black solid;
+  border-right: thin rgba(200, 200, 200, 0.5) solid;
 }
 
 .event-information > p{
