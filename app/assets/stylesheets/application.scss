@@ -24,6 +24,10 @@
   margin-right: 5px;
 }
 
+#dashboard_btn {
+  margin-right: 10px;
+}
+
  .simple-calendar {
    .day {
      width: 200px;
@@ -77,6 +81,10 @@
  .event-button:hover {
    color: white;
    background-color: rgba(34, 106, 114, 0.9);
+ }
+
+ .modal-lg {
+   width: 80%;
  }
 
  .navbar{
