@@ -1,3 +1,20 @@
+<%= form_tag(events_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Here" %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
+
+<br>
+
+<% if params[:search].present? %>
+  <% @search_events.each do |result| %>
+    <h4>Events in: <%= result.location %></h4>
+    <ul>
+      <li>Event Name: <%= result.name %></li>
+      Event Date: <%= result.date.strftime("%B %d, %Y, %A") %>
+    </ul>
+  <% end %>
+<% end %>
+
 
 <%= month_calendar events: @events do |date, events| %>
   <%= date.day %>

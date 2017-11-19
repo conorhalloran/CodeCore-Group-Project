@@ -8,6 +8,15 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+
+    @search_events = []
+
+    if params[:search]
+      @search_events = @events.clone
+      @search_events = Event.search(params[:search]).order("created_at DESC")
+    else
+      render :index
+    end
   end
 
   # GET /events/1
