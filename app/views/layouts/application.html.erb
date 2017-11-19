@@ -21,14 +21,6 @@
         <ul class="navbar-nav ml-auto">
 
           <li class="nav-item">
-              <%= form_tag(events_path, :method => "get", id: "search-form") do %>
-                <%= text_field_tag :search, params[:search], placeholder: "Search Here" %>
-                <%= submit_tag "Search", :name => nil %>
-              <% end %>
-
-          </li>
-
-          <li class="nav-item">
             <a class="nav-link" href="https://slack.com/"><%= image_tag 'slack.svg', style: 'width: 70px;' %></a>
           </li>
 
@@ -62,9 +54,6 @@
             <span class="navbar-text">
               Hello, <%= current_user.first_name %>
             </span>
-            <li class="nav-item">
-            <%= link_to 'Profile', users_path, :class => 'nav-link' %>
-            </li>
 
             <% if current_user.is_admin? %>
             <li class="nav-item">
@@ -119,6 +108,27 @@
 
       <%= yield %>
     </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class='row'>
+          <div class='col-2'>
+            <img class='img-center text-center' src='/assets/polar1.png' width='80px;'/>
+          </div>
+
+          <div class='col-8'style='text-align: center;'>
+            <p style="text-align: center; padding-top: 20px;"><strong> Change Font Size </strong></p>
+            <span id="smallest-text" alt="0.8em" src="/assets/giphy.gif" onclick="smallestText()" style='font-size: 0.9em'> Smaller Font Size </span> |
+            <span id="original-text" alt="0.8em" src="/assets/giphy.gif" onclick="originalText()" style='font-size: 1em' > Original Font Size </span> |
+            <span id="largest-text" alt="1.1em" src="/assets/giphy.gif" onclick="largestText()" style='font-size: 1.2em' > Bigger Font Size </span>
+          </div>
+
+          <div class='col-2'>
+            <img class='img-center text-center' src='/assets/polar1.png' width='80px;'/>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <%# console %>
 
