@@ -38,14 +38,21 @@
    .wday-5 {}
    .wday-6 {}
 
-   .today {}
+   .today {
+     font-weight: bold;
+     background-color: rgba(93, 225, 239, 0.5);
+   }
    .past {}
    .future {}
 
    .start-date {}
 
-   .prev-month {}
-   .next-month { }
+   .prev-month {
+     background-color: rgba(120, 120, 120, 1);
+   }
+   .next-month {
+     background-color: rgba(120, 120, 120, 1);
+   }
    .current-month {}
 
    .has-events {}
@@ -58,4 +65,33 @@
  .event-button {
 
  }
+
+ .navbar{
+   background-color: rgba(93, 225, 239, 0.9);
+ }
+
+ .nav-link{
+   color: rgba(120, 120, 120, 1);
+ }
+
+ .nav-link:hover{
+   color: rgba(220, 220, 220, 1);
+ }
+
+ .calendar-heading{
+   text-align: center;
+ }
+
+.week_name{
+  text-align: center;
+}
+
+.calendar-title{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.calendar-heading{
+  margin: 20px;
+}
 
