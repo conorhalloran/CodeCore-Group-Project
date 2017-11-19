@@ -1,5 +1,8 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user!, except: [:index, :show, :new, :create, :update]
+  before_action :new_event
+  before_action :current_user
 
   # GET /events
   # GET /events.json
@@ -25,10 +28,11 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    @event.user = current_user
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -40,6 +44,7 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    @event.slug = nil
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
@@ -62,13 +67,21 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.friendly.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def event_params
-      params.require(:event).permit(:type, :name, :location, :description, :user_id, :leader_id, :date, :start_time, :end_time)
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def event_params
+    params.require(:event).permit(:event_type, :name, :location, :description, :user_id, :leader_id, :date, :start_time, :end_time)
+  end
+
+  def authorize_user!
+    unless can?(:manage, @event)
+      flash[:alert] = "Access Denied!"
+      redirect_to root_path
     end
+  end
+
 end

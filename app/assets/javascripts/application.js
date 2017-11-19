@@ -15,3 +15,19 @@
 //= require popper
 //= require bootstrap-sprockets 
 //= require_tree .
+
+$(function(){
+  function slideFade(elem) {
+
+    var fade = { opacity: 0, transition: 'opacity 5s' };
+    elem.delay(2000).css(fade).slideUp(3000);
+  }
+
+  slideFade($('.alert'));
+
+
+  $( "#team-1" ).click(function() {
+  console.log('sdfdsf')
+    $( "#team-members" ).toggle('hide')
+  });
+})

@@ -1,8 +1,8 @@
-# README
+# README: Mission Control
 
 We are tasked with creating an application for a local None for Profit Organization; Force Of Nature Alliance. The App will be used to creating coordination of Various Teams, their Missions, Users and Subtasks.  
 
-## Team Members
+## Team Members:
 * Ian
 * Calvin
 * Sam
@@ -12,8 +12,8 @@ We are tasked with creating an application for a local None for Profit Organizat
 
 ### Team Roles:
 * Ian: Team Leader
-* Calvin:
-* Sam:
-* James
+* Calvin: CSS Guru
+* Sam: Mr.CanCan
+* James: Power User
 * Conor: Git Keeper
-* Steve:
+* Steve: Master

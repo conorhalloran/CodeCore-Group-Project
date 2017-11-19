@@ -14,16 +14,25 @@
  *= require_self
  */
 
- main {
-     padding: 15px;
- }
 
  @import "bootstrap";
+
+
+
+#new_event_btn {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#dashboard_btn {
+  margin-right: 10px;
+}
 
  .simple-calendar {
    .day {
      width: 200px;
-     height: 200px;
+     height: 16vh;
+     border: 1px solid rgba(100, 100, 100, 0.5);
    }
 
    .wday-0 {}
@@ -33,16 +42,108 @@
    .wday-4 {}
    .wday-5 {}
    .wday-6 {}
+   .today {
+     font-weight: bold;
+     background-color: rgba(93, 225, 239, 0.5);
+   }
 
-   .today {}
+   .modal-body > p {
+     font-weight: normal;
+   }
    .past {}
    .future {}
 
    .start-date {}
 
-   .prev-month {}
-   .next-month { }
+   .prev-month {
+     background-color: rgba(120, 120, 120, 1);
+   }
+   .next-month {
+     background-color: rgba(120, 120, 120, 1);
+   }
    .current-month {}
 
    .has-events {}
  }
+
+ .hide {
+   display: none;
+ }
+
+ .event-button {
+   border-radius: 5px;
+   background-color: rgba(93, 225, 239, 0.9);
+   color: black;
+   border: none;
+   transition: 0.25s;
+ }
+
+ .event-button:hover {
+   color: white;
+   background-color: rgba(34, 106, 114, 0.9);
+ }
+
+ .modal-lg {
+   width: 80%;
+ }
+
+ .navbar{
+   background-color: rgba(93, 225, 239, 0.9);
+ }
+
+ .nav-link{
+   color: rgba(140, 140, 140, 1);
+ }
+
+ .nav-link:hover{
+   color: rgba(220, 220, 220, 1);
+ }
+
+ .calendar-heading{
+   text-align: center;
+   margin-top: 20px;
+ }
+
+.week_name{
+  text-align: center;
+}
+
+.calendar-heading .calendar-title{
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.subsection{
+  text-align: center;
+}
+
+.add-event{
+  text-align: center;
+}
+
+.btn-outline-success{
+  border: none;
+}
+
+.btn-outline-success:hover{
+  background-color: none;
+}
+
+.btn-outline-success{
+  background-color: none;
+  border: none;
+}
+
+
+.cal-btn{
+  border: none;
+  background-color: transparent;
+}
+ccepting dashboard
+
+
+.subsection{
+  text-align: center;
+}
