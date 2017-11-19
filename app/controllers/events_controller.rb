@@ -32,7 +32,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -82,7 +82,7 @@ class EventsController < ApplicationController
 =======
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:type, :name, :location, :description, :user_id, :leader_id, :date, :start_time, :end_time)
+    params.require(:event).permit(:event_type, :name, :location, :description, :user_id, :leader_id, :date, :start_time, :end_time)
   end
 
   def authorize_user!
