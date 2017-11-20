@@ -1,5 +1,5 @@
 <div class="modal fade" id='<%= event.id %>' tabindex="-1" role="dialog" aria-labelledby='<%= event.id %>Label' aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id='<%= event.id %>Label'><%= event.name %></h5>
@@ -31,41 +31,55 @@
           </div>
         </div>
 
+        <div class='col-md-4 event-information'>
+
+          <div class='task-create'>
+          <h3>Create Task:</h3>
+
+            <%= simple_form_for [event, @task] do |f| %>
+              <%= f.error_notification %>
+
+              <div class="form-inputs">
+                <%= f.input :name %>
+                <%= f.input :description %>
+                <%= f.association :user %>
+                <%= f.association :event %>
+                <%= f.input :status %>
+                <%= f.input :due_by %>
+              </div>
+              <div class="form-actions text-right">
+                <%= f.button :submit, :class => 'btn btn-outline-dark' %>
+              </div>
+            <% end %>
+          </div>
+
+        </div>
+
         <div class='col-md-4'>
           <div class='group-members'>
             <p style='text-align: center'><strong>Group Members</strong></p>
-            <div class="d3-2">
-              <div class="d4">
-                <% event.tasks.each do |task| %>
-                  <div class="d5"><%= task.user&.full_name %> | <%=task.user.email%></div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-          <div class='col-md-4'>
-
-            <div class='task-create'>
-            <h3>Create Task:</h3>
-
-              <%= simple_form_for [event, @task] do |f| %>
-                <%= f.error_notification %>
-
-                <div class="form-inputs">
-                  <%= f.input :name %>
-                  <%= f.input :description %>
-                  <%= f.association :user %>
-                  <%= f.association :event %>
-                  <%= f.input :status %>
-                  <%= f.input :due_by %>
-                  <%= f.input :assigned_by %>
-                </div>
-
-                <div class="form-actions">
-                  <%= f.button :submit %>
-                </div>
+            <div class="task-viewer">
+              <% event.tasks.each do |task| %>
+                <p><strong> User: </strong> <%= task.user&.full_name %></p>
+                <p><strong> Email: </strong><%=task.user.email%></p>
+                <hr>
               <% end %>
             </div>
+          </div>
 
+          <div>
+            <p style='text-align: center; padding-top: 20px;'><strong>Task List</strong></p>
+              <div class="task-viewer">
+              <% event.tasks.each do |task| %>
+                <p><strong> Task Name: </strong> <%= task.name %></p>
+                <p><strong> Description: </strong><%= task.description %></p>
+                <p><strong> Status: </strong><%= task.status %></p>
+                <p><strong> Due By: </strong><%= task.due_by %></p>
+                <p><strong> Assigned By: </strong><%= task.assigned_by %></p>
+                <hr>
+              <% end %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
