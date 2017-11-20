@@ -4,14 +4,22 @@ class EventsController < ApplicationController
   before_action :new_event
   before_action :new_user
   before_action :current_user
-  before_action :get_users, only: [:new, :create, :index]
-  before_action :get_users_names_and_ids, only: [:new, :create, :index]
+  before_action :get_current_user_teams
+  before_action :get_users
+  before_action :get_users_names_and_ids, only: [:new, :create, :index, :edit]
 
   # GET /events
   # GET /events.json
   def index
     @events = Event.all
     @task = Task.new
+    # @teams = Team.all
+    # @current_user_teams = []
+    # if current_user
+    #   current_user.memberships.each do |mship|
+    #     @current_user_teams << @teams.find_by_id(mship.team_id)
+    #   end
+    # end
 
     @search_events = []
 
@@ -37,6 +45,9 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    @event = Event.friendly.find(params[:id])
+    @teams = Team.all
+    @team = @teams.find_by_event_id(@event.id)
   end
 
   # POST /events
@@ -49,23 +60,35 @@ class EventsController < ApplicationController
     @team.event = @event
     @team.save
     @users_names_array = event_params[:team_attributes][:memberships_attributes][:user_id]
-    @user_id_array = []
+    @user_id_array = {}
     @users_names_array.each do |u_n|
-      @user_id_array << (@user_names.select {|k, v| v == u_n})
+      @user_id_array.merge!(@user_names.select {|k, v| v == u_n})
     end
-    @user_id_array.each do |id|
+    @user_id_array.merge!({current_user.id => current_user.full_name})
+    @user_id_array.each_pair do |id, name|
       if id != ""
-        @membership = Membership.new(event_params[:team_attributes][:memberships_attributes])
-        # @membership.user_id = id
-        @membership.user = @users.find_by_id(id)
-        @membership.team = @team
-        @membership.save
+        if id == current_user.id
+          @membership = Membership.new(event_params[:team_attributes][:memberships_attributes])
+          # @membership.user_id = id
+          @membership.user = current_user
+          @membership.is_leader = true
+          @membership.team = @team
+          @membership.save
+        else
+          @membership = Membership.new(event_params[:team_attributes][:memberships_attributes])
+          # @membership.user_id = id
+          @membership.user = @users.find_by_id(id)
+          @membership.team = @team
+          @membership.save
+        end
       end
     end
     respond_to do |format|
       if @event.save
         format.html { redirect_to root_path, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
+        EventsMailer.notify_event_creator(@event).deliver_now
+
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -77,10 +100,16 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1.json
   def update
     @event.slug = nil
+    @user_names = {}
+    @message = @event.description
+    @team = event.teams
+
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
+        EventsMailer.leader_notify_guest(@event, @message).deliver_now
+
       else
         format.html { render :edit }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -121,6 +150,7 @@ class EventsController < ApplicationController
                           :location,
                           :description,
                           :user_id,
+                          :team,
                           :leader_id,
                           :date,
                           :start_time,
@@ -149,5 +179,13 @@ class EventsController < ApplicationController
     @users.each { |u| @user_names.merge!({u.id => u.full_name}) }
   end
 
-
+  def get_current_user_teams
+    @teams = Team.all
+    @current_user_teams = []
+    if current_user
+      current_user.memberships.each do |mship|
+        @current_user_teams << @teams.find_by_id(mship.team_id)
+      end
+    end
+  end
 end

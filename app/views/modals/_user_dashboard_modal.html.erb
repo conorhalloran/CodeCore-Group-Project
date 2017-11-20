@@ -9,17 +9,15 @@
       </div>
       <div class="modal-body">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="3000">
-          <p style='text-align: center'> <em> Private Messages </em> </p>
+          <p class='centering'> <em> Private Messages </em> </p>
           <div class="carousel-inner">
-            <div class="carousel-item active" style="text-align: center">
-              MEETING AT PORT COQUITLAM
+            <% current_user.teams.each_with_index do |team , index| %>
+            <div class="carousel-item centering <% if index == 0 %>
+               active
+            <% end %>">
+              <strong> <%=team.event.name%> </strong> - <%= team.event.event_type %> - is coming up.  In :  <strong> <%=team.event.location%> </strong>On : <strong> <%=team.event.start_time.strftime('%Y-%B-%d')%> </strong>
             </div>
-            <div class="carousel-item" style="text-align: center">
-              SLIDESHOW MEETING
-            </div>
-            <div class="carousel-item" style="text-align: center">
-              WHATEVER MEETING
-            </div>
+            <% end %>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -33,32 +31,40 @@
 
         <div class="row modal-body">
           <div class="col-md-6 modal-team">
-            <p style='text-align: center'><strong>Current Teams</strong></p>
-            <ul class='team-box'>
-              <li id="team-1"><em>Team 1</em></li>
-              <p id="team-members" class="hide">abcdefg</p>
-              <li><em>Team 2</em></li>
-              <li><em>Team 3</em></li>
-              <li><em>Team 4</em></li>
-            </ul>
+            <p class='centering'><strong>My Teams</strong></p>
+            <div class="task-viewer">
+              <ul>
+                <% @current_user_teams.each do |team| %>
+                  <li id="team-1" class="mt-2"><strong>Team <%= team.name %></strong></li>
+                  <% team.memberships.each do |mship| %>
+                    <p class = 'mt-2'><%= @users.find_by_id(mship.user_id).full_name %></p>
+                    <p><%= @users.find_by_id(mship.user_id).email %></p>
+                  <% end %>
+                <% end %>
+              </ul>
+            </div>
           </div>
 
           <div class="col-md-6 modal-team">
-            <p style='text-align: center'><strong>Briefings</strong></p>
+            <p class='centering'><strong>Briefings</strong></p>
             <ul class='team-box'>
               <li class="important-docs"><em>Important Documents</em></li>
               <div class = 'im-docs' class = 'hide'>
-                <p>Campaign Overview</p>
-                <p>Canvas Petition</p>
-                <p>Fact Sheet</p>
-                <p>Brochure</p>
-                <p>Training</p>
+                <ul>
+                  <li><a href="https://drive.google.com/drive/folders/1z9cW9wEtSChhwT6E-FPbvuxPwOtR4hGX">Campaign Overview</a></li>
+                  <li><a href="https://drive.google.com/drive/folders/1z9cW9wEtSChhwT6E-FPbvuxPwOtR4hGX">Canvas Petition</a></li>
+                  <li><a href="https://drive.google.com/drive/folders/1z9cW9wEtSChhwT6E-FPbvuxPwOtR4hGX">Fact Sheet</a></li>
+                  <li><a href="https://drive.google.com/drive/folders/1z9cW9wEtSChhwT6E-FPbvuxPwOtR4hGX">Brochure</a></li>
+                  <li><a href="https://drive.google.com/drive/folders/1z9cW9wEtSChhwT6E-FPbvuxPwOtR4hGX">Training</a></li>
+                </ul>
               </div>
 
               <li class="team-docs"><em>Team Documents</em></li>
               <div class = 'docs' class = 'hide'>
-                <p>Port Moody Research Folder</p>
-                <p>Data Log Folders</p>
+                <ul>
+                  <li><a href="https://drive.google.com/drive/folders/1z9cW9wEtSChhwT6E-FPbvuxPwOtR4hGX">Port Moody Research Folder</a></li>
+                  <li><a href="https://drive.google.com/drive/folders/1z9cW9wEtSChhwT6E-FPbvuxPwOtR4hGX">Data Log Folders</a></li>
+                </ul>
               </div>
             </ul>
           </div>

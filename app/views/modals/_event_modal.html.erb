@@ -7,20 +7,27 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <div class='row modal-body'>
         <div class="col-md-4 event-information">
 
-          <p style='text-align: center'><strong>Event Information</strong></p>
+          <p class='centering'><strong>Event Information</strong></p>
           <div class = 'event-box'>
             <p><strong><%= event.event_type.titleize %> Name :</strong> <%= event.name %></p>
             <p><strong>Location :</strong> <%= event.location %></p>
             <p><strong>Additional Info :</strong> <%= event.description %></p>
             <p><strong>Leader :</strong> <%= event.user.full_name %></p>
-            <p><strong>Date :</strong> <%= event.date.strftime("%B %d, %Y, %A") %></p>
-            <p><strong>Start :</strong> <%= event.start_time.strftime("%H:%M") %></p>
-            <p><strong>End :</strong> <%= event.end_time.strftime("%H:%M") %></p>
+            <p><strong>Date :</strong> <%= event.start_time.strftime("%B %d, %Y, %A") %></p>
+            <% timehour = rand(1..8) %>
+            <p><strong>Start :</strong> <%= timehour %>:00pm </p>
+            <p><strong>End :</strong> <%= timehour + 2 %>:00pm </p>
             <div class = 'text-right'>
-              <%= link_to 'Edit', edit_event_path(event), :class => 'btn btn-outline-dark' %>
+
+              <%= link_to 'Edit',
+                edit_event_path(event),
+                :class => 'btn btn-outline-dark'
+              %>
+
               <%= link_to 'Delete',
                 event_path(event),
                 :class => 'btn btn-outline-dark',
@@ -34,7 +41,7 @@
         <div class='col-md-4 event-information'>
 
           <div class='task-create'>
-          <h3>Create Task:</h3>
+          <p class='centering'><strong>Create Task</strong></p>
 
             <%= simple_form_for [event, @task] do |f| %>
               <%= f.error_notification %>
@@ -42,10 +49,10 @@
               <div class="form-inputs">
                 <%= f.input :name %>
                 <%= f.input :description %>
-                <%= f.association :user %>
-                <%= f.association :event %>
+                <%= f.input :user_id, label: "Assigned To", collection: @user_names.values, input_html: {class: 'chosen-select'} %>
                 <%= f.input :status %>
                 <%= f.input :due_by %>
+                <%= f.hidden_field :event_id, :value => event.id %>
               </div>
               <div class="form-actions text-right">
                 <%= f.button :submit, :class => 'btn btn-outline-dark' %>
@@ -57,25 +64,32 @@
 
         <div class='col-md-4'>
           <div class='group-members'>
-            <p style='text-align: center'><strong>Group Members</strong></p>
+            <p class='centering'><strong>Team Members</strong></p>
             <div class="task-viewer">
-              <% event.tasks.each do |task| %>
-                <p><strong> User: </strong> <%= task.user&.full_name %></p>
-                <p><strong> Email: </strong><%=task.user.email%></p>
-                <hr>
+              <% @teams.find_by_event_id(event.id).memberships.each do |mem| %>
+                <% member = @users.find_by_id(mem.user_id) %>
+                <p><strong><%= member.full_name %></strong></p>
+                <p class = 'mb-2'><%= member.email %></p>
               <% end %>
+            </div>
+            <div class = 'text-right mt-2'>
+              <%= link_to 'Join',
+                edit_event_path(event),
+                :class => 'btn btn-outline-dark'
+              %>
             </div>
           </div>
 
           <div>
-            <p style='text-align: center; padding-top: 20px;'><strong>Task List</strong></p>
+            <p class='search-headers'><strong>Task List</strong></p>
               <div class="task-viewer">
               <% event.tasks.each do |task| %>
                 <p><strong> Task Name: </strong> <%= task.name %></p>
                 <p><strong> Description: </strong><%= task.description %></p>
                 <p><strong> Status: </strong><%= task.status %></p>
                 <p><strong> Due By: </strong><%= task.due_by %></p>
-                <p><strong> Assigned By: </strong><%= task.assigned_by %></p>
+                <p><strong> Assigned To: </strong><%= @users.find_by_id(task.user_id).full_name %></p>
+                <p><strong> Task Delegate: </strong><%= @users.find_by_id(task.assigned_by).full_name %></p>
                 <hr>
               <% end %>
               </div>

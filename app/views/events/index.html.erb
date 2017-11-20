@@ -1,10 +1,12 @@
+<% @events.each do |event| %>
+  <%# MODAL %>
+  <%= render './modals/event_modal', event: event %>
+<% end %>
 
 <%= month_calendar events: @events do |date, events| %>
   <%= date.day %>
 
   <% events.each do |event| %>
-    <%# MODAL %>
-    <%= render './modals/event_modal', event: event %>
 
     <div class = 'subsection'>
       <button
@@ -21,13 +23,53 @@
   <% end %>
 <% end %>
 
-<div class = 'col-8'>
-  <p style="text-align: center; padding-top: 20px;"><strong> Instructions </strong></p>
-  <p>
-    Welcome to Force of Nature's event sign up application. Events can be added
-    by clicking the New Event button on the page. Events can be joined by
-    clicking the sign up button within the events information. Events can also
-    be filtered by searching for the events location. Size of the letters can be
-    changed by clicking on the corresponding polar bear on the footer.
-  </p>
+<div class = 'row' id='search-area'>
+  <div class = 'col-4'>
+    <p class='search-headers'><strong> Location Search </strong></p>
+
+    <div class='centering'>
+      <%= form_tag(events_path(:anchor => 'search-area'), :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search Here" %>
+        <%= submit_tag "Search", :name => nil %>
+      <% end %>
+    </div>
+
+    <% if @search_events.blank? %>
+      <p class='search-headers'><strong>Hmm... looks like there are no events containing "<%= params[:search] %>".</strong></p>
+
+    <% elsif params[:search].present? %>
+      <p class='search-headers'><strong>Events found containing "<%= params[:search] %>"</strong></p>
+      <% @search_events.each do |result| %>
+        <ul>
+          <button
+            type="button"
+            class="nav-link cal-btn"
+            data-toggle="modal"
+            data-target='#<%= result.id %>'
+            data-whatever="@mdo"
+            style='padding-left: 0;'
+          >
+            <span class='black-text'>Event Name:</span> <%= result.name %>
+          </button>
+          Event Date: <%= result.start_time.strftime("%B %d, %Y") %><br>
+          Location: <%= result.location %>
+        </ul>
+      <% end %>
+    <% end %>
+    </div>
+
+  <div class = 'col-8'>
+    <p class='search-headers'><strong> Instructions </strong></p>
+    <p>
+      Welcome to Force of Nature's event sign up application. Events can be added
+      by clicking the New Event button on the page. Events can be joined by
+      clicking the sign up button within the events information. Events can also
+      be filtered by searching for the events location. Size of the letters can be
+      changed by clicking on the corresponding font size on the footer.
+    </p>
+  </div>
 </div>
+
+<section id="search-form-and-result">
+
+</section>

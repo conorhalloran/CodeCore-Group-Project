@@ -24,6 +24,10 @@ class Event < ApplicationRecord
     presence: true
   }
 
+def should_generate_new_friendly_id?
+  slug.blank?
+end
+
 
   # def to_param
   #   "#{id}-#{title}".parameterize

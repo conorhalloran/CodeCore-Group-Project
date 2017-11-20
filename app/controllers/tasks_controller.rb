@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :new_user
   before_action :current_user
+  before_action :get_users_names_and_ids, only: [:new, :create, :index]
 
   # GET /tasks
   # GET /tasks.json
@@ -30,7 +32,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.assigned_by = current_user.id
-
+    @task.user_id = @user_names.key(task_params[:user_id])
     respond_to do |format|
       if @task.save
         format.html { redirect_to root_path, notice: 'Task was successfully created.' }
@@ -75,5 +77,15 @@ class TasksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       params.require(:task).permit(:name, :description, :user_id, :event_id, :status, :due_by, :assigned_by)
+    end
+
+    def new_user
+      @user = User.new
+    end
+
+    def get_users_names_and_ids
+      @users = User.all
+      @user_names = {}
+      @users.each { |u| @user_names.merge!({u.id => u.full_name}) }
     end
 end
