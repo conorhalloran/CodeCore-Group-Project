@@ -37,7 +37,7 @@
                 >
                   <span style='color: black'>Event Name:</span> <%= result.name %>
                 </button>
-                Event Date: <%= result.date.strftime("%B %d, %Y") %><br>
+                Event Date: <%= result.start_time.strftime("%B %d, %Y") %><br>
                 Location: <%= result.location %>
               </ul>
             <% end %>

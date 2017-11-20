@@ -7,6 +7,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <div class='row modal-body'>
         <div class="col-md-4 event-information">
 
@@ -16,11 +17,16 @@
             <p><strong>Location :</strong> <%= event.location %></p>
             <p><strong>Additional Info :</strong> <%= event.description %></p>
             <p><strong>Leader :</strong> <%= event.user.full_name %></p>
-            <p><strong>Date :</strong> <%= event.date.strftime("%B %d, %Y, %A") %></p>
+            <p><strong>Date :</strong> <%= event.start_time.strftime("%B %d, %Y, %A") %></p>
             <p><strong>Start :</strong> <%= event.start_time.strftime("%H:%M") %></p>
             <p><strong>End :</strong> <%= event.end_time.strftime("%H:%M") %></p>
             <div class = 'text-right'>
-              <%= link_to 'Edit', edit_event_path(event), :class => 'btn btn-outline-dark' %>
+
+              <%= link_to 'Edit',
+                edit_event_path(event),
+                :class => 'btn btn-outline-dark'
+              %>
+
               <%= link_to 'Delete',
                 event_path(event),
                 :class => 'btn btn-outline-dark',
