@@ -43,9 +43,9 @@ Membership.destroy_all
 
 
 super_user = User.create(
-  first_name: 'Ian',
-  last_name: 'Edmonds',
-  email: 'ianladneredmonds@gmail.com',
+  first_name: 'Frances',
+  last_name: 'The Fifth',
+  email: 'fran@mail.ru',
   phone_number: Faker::PhoneNumber.cell_phone,
   password: PASSWORD,
   is_admin: true

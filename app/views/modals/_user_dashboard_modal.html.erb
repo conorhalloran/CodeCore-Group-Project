@@ -12,11 +12,13 @@
           <p class='centering'> <em> Private Messages </em> </p>
           <div class="carousel-inner">
             <% current_user.teams.each_with_index do |team , index| %>
-            <div class="carousel-item centering <% if index == 0 %>
-               active
-            <% end %>">
-              <strong> <%=team.event.name%> </strong> - <%= team.event.event_type %> - is coming up.  In :  <strong> <%=team.event.location%> </strong>On : <strong> <%=team.event.start_time.strftime('%Y-%B-%d')%> </strong>
-            </div>
+              <div class="carousel-item centering <% if index == 0 %>
+                 active
+                <% end %>">
+              <% if team.event.present? %>
+                <strong> <%=team.event.name%> </strong> - <%= team.event.event_type %> - is coming up.  In :  <strong> <%=team.event.location%> </strong>On : <strong> <%=team.event.start_time.strftime('%Y-%B-%d')%> </strong>
+              <% end %>
+              </div>
             <% end %>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -35,10 +37,12 @@
             <div class="task-viewer">
               <ul>
                 <% @current_user_teams.each do |team| %>
-                  <li id="team-1" class="mt-2"><strong>Team <%= team.name %></strong></li>
-                  <% team.memberships.each do |mship| %>
-                    <p class = 'mt-2'><%= @users.find_by_id(mship.user_id).full_name %></p>
-                    <p><%= @users.find_by_id(mship.user_id).email %></p>
+                  <% if team %>
+                    <li id="team-1" class="mt-2"><strong>Team <%= team.name %></strong></li>
+                    <% team.memberships.each do |mship| %>
+                      <p class = 'mt-2'><%= @users.find_by_id(mship.user_id).full_name %></p>
+                      <p><%= @users.find_by_id(mship.user_id).email %></p>
+                    <% end %>
                   <% end %>
                 <% end %>
               </ul>

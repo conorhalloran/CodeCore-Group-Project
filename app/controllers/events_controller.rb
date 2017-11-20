@@ -69,11 +69,11 @@ class EventsController < ApplicationController
     @event.slug = nil
     @user_names = {}
     @message = @event.description
-    @team = event.teams
+    @team = @event.teams
 
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
         EventsMailer.leader_notify_guest(@event, @message).deliver_now
 
