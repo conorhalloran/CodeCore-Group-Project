@@ -15,7 +15,7 @@
             <div class="carousel-item centering <% if index == 0 %>
                active
             <% end %>">
-              <%=team.name%>
+              <strong>Event Name: </strong> <%=team.event.name%> | <strong>Event Location: </strong> <%=team.event.location%> | <strong>Event Time: </strong> <%=team.event.start_time.strftime('%Y-%B-%d')%>
             </div>
             <% end %>
           </div>
