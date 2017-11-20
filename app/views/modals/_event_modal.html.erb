@@ -48,7 +48,7 @@
               <div class="form-inputs">
                 <%= f.input :name %>
                 <%= f.input :description %>
-                <%= f.input :user_id, label: "Members", collection: @user_names.values, input_html: {class: 'chosen-select'} %>
+                <%= f.input :user_id, label: "Assigned To", collection: @user_names.values, input_html: {class: 'chosen-select'} %>
                 <%= f.input :status %>
                 <%= f.input :due_by %>
                 <%= f.hidden_field :event_id, :value => event.id %>

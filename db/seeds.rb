@@ -15,6 +15,24 @@ EVENT_TYPES = [
   'research',
   'other'
 ]
+MUNICIPALITIES = [
+  'Bowen Island',
+  'Burnaby',
+  'Coquitlam',
+  'Delta',
+  'Langley',
+  'Maple Ridge',
+  'New Westminster',
+  'North Vancouver',
+  'Pitt Meadows',
+  'Port Coquitlam',
+  'Port Moody',
+  'Richmond',
+  'Surrey',
+  'Vancouver',
+  'West Vancouver',
+  'White Rock'
+]
 
 Team.destroy_all
 Event.destroy_all
@@ -25,10 +43,10 @@ Membership.destroy_all
 
 
 super_user = User.create(
-  first_name: 'Cow',
-  last_name: 'Fun',
-  email: 'cowfun@mail.ru',
-  phone_number: 123456789,
+  first_name: 'Ian',
+  last_name: 'Edmonds',
+  email: 'ianladneredmonds@gmail.com',
+  phone_number: Faker::PhoneNumber.cell_phone,
   password: PASSWORD,
   is_admin: true
 )
@@ -68,7 +86,7 @@ guests = Guest.all
   Event.create(
     event_type: EVENT_TYPES.sample,
     name: Faker::Ancient.primordial,
-    location: Faker::StarTrek.location,
+    location: MUNICIPALITIES.sample,
     description: Faker::Hacker.say_something_smart,
     date: Faker::Date.between(Date.today, 1.month.from_now),
     start_time: start_time,

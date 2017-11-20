@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20171119230136) do
     t.datetime "updated_at", null: false
     t.datetime "start_time"
     t.datetime "end_time"
-    t.bigint "team_id"
     t.string "slug"
+    t.bigint "team_id"
     t.index ["team_id"], name: "index_events_on_team_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
