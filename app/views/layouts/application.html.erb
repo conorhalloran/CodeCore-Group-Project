@@ -81,10 +81,7 @@
           </li>
 
         <% else %>
-          <%# <li class="nav-item">
-            <%= link_to('Sign In', new_session_path, :class => 'nav-link') %>
-          <%# </li> %>
-          <div class="add-event">
+          <div class="sign-in">
             <button
               type="button"
               class="nav-link cal-btn"
@@ -95,16 +92,28 @@
             Sign In
             </button>
           </div>
-          <li class="nav-item">
-            <%= link_to('Sign Up', new_user_path, :class => 'nav-link') %>
-          </li>
-        <% end %>
+          <div class="sign-up">
+            <button
+              type="button"
+              class="nav-link cal-btn"
+              data-toggle="modal"
+              data-target="#newUserModal"
+              data-whatever="@mdo"
+            >
+            Sign Up
+            </button>
+          </div>
+          <% end %>
         </ul>
       </div>
     </nav>
 
     <%# New Modal %>
     <%= render './modals/new_event_modal' %>
+
+    <%# User Modals %>
+    <%= render './modals/new_session_modal' %>
+    <%= render './modals/new_user_modal' %>
 
     <%#= DASHBOARD MODAL %>
     <%= render './modals/user_dashboard_modal' %>
