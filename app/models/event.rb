@@ -4,10 +4,13 @@ class Event < ApplicationRecord
   has_many :tasks, dependent: :destroy
   belongs_to :user
 
+  # cocoon nested creation
+  has_many :teams, class_name: "Team"
+  accepts_nested_attributes_for :teams
   validates :event_type, {
     presence: true
   }
-  
+
 
   validates :name, {
     presence: true
@@ -20,13 +23,13 @@ class Event < ApplicationRecord
   validates :description, {
     presence: true
   }
-  
+
 
   # def to_param
   #   "#{id}-#{title}".parameterize
   # end
   def self.search(search)
-    where("location ILIKE ?", "%#{search}%") 
+    where("location ILIKE ?", "%#{search}%")
   end
 
 end

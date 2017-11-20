@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171119195729) do
+ActiveRecord::Schema.define(version: 20171119230136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20171119195729) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.string "slug"
+    t.bigint "team_id"
+    t.index ["team_id"], name: "index_events_on_team_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -51,6 +53,16 @@ ActiveRecord::Schema.define(version: 20171119195729) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "memberships", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "team_id"
+    t.boolean "is_leader", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_memberships_on_team_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.text "description"
@@ -65,6 +77,14 @@ ActiveRecord::Schema.define(version: 20171119195729) do
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "event_id"
+    t.index ["event_id"], name: "index_teams_on_event_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -77,7 +97,9 @@ ActiveRecord::Schema.define(version: 20171119195729) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "events", "teams"
   add_foreign_key "events", "users"
   add_foreign_key "tasks", "events"
   add_foreign_key "tasks", "users"
+  add_foreign_key "teams", "events"
 end

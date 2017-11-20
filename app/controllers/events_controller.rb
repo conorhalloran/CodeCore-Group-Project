@@ -4,6 +4,8 @@ class EventsController < ApplicationController
   before_action :new_event
   before_action :new_user
   before_action :current_user
+  before_action :get_users, only: [:new, :create, :index]
+  before_action :get_users_names_and_ids, only: [:new, :create, :index]
 
   # GET /events
   # GET /events.json
@@ -40,9 +42,26 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(event_params)
+    @event = Event.new(event_params.except(:team_attributes))
     @event.user = current_user
-
+    @event.save
+    @team = Team.new(event_params[:team_attributes].except(:memberships_attributes))
+    @team.event = @event
+    @team.save
+    @users_names_array = event_params[:team_attributes][:memberships_attributes][:user_id]
+    @user_id_array = []
+    @users_names_array.each do |u_n|
+      @user_id_array << (@user_names.select {|k, v| v == u_n})
+    end
+    @user_id_array.each do |id|
+      if id != ""
+        @membership = Membership.new(event_params[:team_attributes][:memberships_attributes])
+        # @membership.user_id = id
+        @membership.user = @users.find_by_id(id)
+        @membership.team = @team
+        @membership.save
+      end
+    end
     respond_to do |format|
       if @event.save
         format.html { redirect_to root_path, notice: 'Event was successfully created.' }
@@ -80,6 +99,12 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def new_event
+    @event = Event.new
+    @team = Team.new
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_event
     @event = Event.friendly.find(params[:id])
@@ -89,9 +114,22 @@ class EventsController < ApplicationController
     @user = User.new
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:event_type, :name, :location, :description, :user_id, :leader_id, :date, :start_time, :end_time)
+    params.require(:event).permit(
+                          :event_type,
+                          :name,
+                          :location,
+                          :description,
+                          :user_id,
+                          :leader_id,
+                          :date,
+                          :start_time,
+                          :end_time,
+                          :team_id,
+                          {:team_attributes =>
+                            [:id, :name,
+                              {:memberships_attributes => {:user_id => []}}]}
+                        )
   end
 
   def authorize_user!
@@ -100,5 +138,16 @@ class EventsController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def get_users
+    @users = User.all
+  end
+
+  def get_users_names_and_ids
+    @users = User.all
+    @user_names = {}
+    @users.each { |u| @user_names.merge!({u.id => u.full_name}) }
+  end
+
 
 end
