@@ -73,14 +73,18 @@
               <% end %>
             </div>
             <% if user_signed_in? %>
-              <div class = 'text-right mt-2'>
-              <%= button_to "Join Event",
-                  {:controller => :memberships, :action => 'create'},
-                  params: {:event => event},
-                  :method => :post,
-                  :class => 'btn btn-outline-dark'
-              %>
-              </div>
+              <% is_on_team = [] %>
+              <% event.teams[0].memberships.each {|m| is_on_team << (m.user_id == current_user.id)} %>
+              <% if !is_on_team.include?(true) %>
+                <div class = 'text-right mt-2'>
+                <%= button_to "Join Event",
+                    {:controller => :memberships, :action => 'create'},
+                    params: {:event => event},
+                    :method => :post,
+                    :class => 'btn btn-outline-dark'
+                %>
+                </div>
+              <% end %>
             <% end %>
           </div>
 
