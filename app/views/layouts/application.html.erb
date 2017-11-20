@@ -25,7 +25,7 @@
           </li>
 
           <% if user_signed_in? %>
-          <% if controller_name == "events" && action_name = "index" %>
+          <% if controller_name == "events" && action_name == "index" %>
 
           <div class="add-event">
             <button
@@ -101,18 +101,17 @@
         </ul>
       </div>
     </nav>
+    <% if controller_name == "events" && action_name == "index" %>
+      <%# New Modal %>
+      <%= render './modals/new_event_modal' %>
 
-    <% if controller_name === "events" && action_name === "homepage" %>
-    <%# New Modal %>
-    <%= render './modals/new_event_modal' %>
+      <%#= DASHBOARD MODAL %>
+      <%= render './modals/user_dashboard_modal' %>
+    <% end %>
 
     <%# User Modals %>
     <%= render './modals/new_session_modal' %>
     <%= render './modals/new_user_modal' %>
-
-    <%#= DASHBOARD MODAL %>
-    <%= render './modals/user_dashboard_modal' %>
-    <% end %>
 
     <main class="container-fluid">
         <%# ALERTS %>
