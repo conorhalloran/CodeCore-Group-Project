@@ -1,34 +1,18 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  before_action :new_user
   before_action :current_user
-  before_action :get_users_names_and_ids, only: [:new, :create, :index]
+  before_action :get_users_relations, only: [:new, :create, :index]
 
-  # GET /tasks
-  # GET /tasks.json
-  def index
-    @tasks = Task.all
-  end
-
-  # GET /tasks/1
-  # GET /tasks/1.json
   def show
-    # user = User.find params[:user_id]
   end
 
-  # GET /tasks/new
   def new
     @task = Task.new
   end
 
-  # GET /tasks/1/edit
   def edit
   end
 
-
-
-  # POST /tasks
-  # POST /tasks.json
   def create
     @task = Task.new(task_params)
     @task.assigned_by = current_user.id
@@ -44,8 +28,6 @@ class TasksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tasks/1
-  # PATCH/PUT /tasks/1.json
   def update
     respond_to do |format|
       if @task.update(task_params)
@@ -58,8 +40,6 @@ class TasksController < ApplicationController
     end
   end
 
-  # DELETE /tasks/1
-  # DELETE /tasks/1.json
   def destroy
     @task.destroy
     respond_to do |format|
@@ -69,23 +49,11 @@ class TasksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       params.require(:task).permit(:name, :description, :user_id, :event_id, :status, :due_by, :assigned_by)
-    end
-
-    def new_user
-      @user = User.new
-    end
-
-    def get_users_names_and_ids
-      @users = User.all
-      @user_names = {}
-      @users.each { |u| @user_names.merge!({u.id => u.full_name}) }
     end
 end
