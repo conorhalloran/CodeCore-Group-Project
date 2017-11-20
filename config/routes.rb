@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :events do
     resources :tasks, shallow: true, only: [:create, :edit, :update, :destroy]
   end
+  resources :memberships, only: [:create]
   namespace :admin do
     resources :dashboard, only: [:index]
   end

@@ -3,7 +3,7 @@ class Event < ApplicationRecord
   friendly_id :name, use: [:slugged, :history, :finders]
   has_many :tasks, dependent: :destroy
   belongs_to :user
-  has_many :teams, class_name: "Team"
+  has_many :teams, class_name: "Team", dependent: :destroy
   accepts_nested_attributes_for :teams
 
   validates :event_type, presence: true
