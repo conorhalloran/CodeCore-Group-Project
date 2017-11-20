@@ -22,7 +22,10 @@
             <p><strong>End :</strong> <%= event.end_time.strftime("%H:%M") %></p>
             <div class = 'text-right'>
 
-              <%= link_to 'Edit', edit_event_path(event.id), :class => 'btn btn-outline-dark' %>
+              <%= link_to 'Edit',
+                edit_event_path(event),
+                :class => 'btn btn-outline-dark'
+              %>
 
               <%= link_to 'Delete',
                 event_path(event),
@@ -68,12 +71,6 @@
                 <p><strong> Email: </strong><%= member.email %></p>
                 <hr>
               <% end %>
-            </div>
-            <div class='text-right pt-2'>
-              <%= link_to 'Join Event',
-                edit_event_path(event),
-                :class => 'btn btn-outline-dark'
-              %>
             </div>
           </div>
 
