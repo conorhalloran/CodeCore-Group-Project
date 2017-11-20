@@ -81,9 +81,20 @@
           </li>
 
         <% else %>
-          <li class="nav-item">
+          <%# <li class="nav-item">
             <%= link_to('Sign In', new_session_path, :class => 'nav-link') %>
-          </li>
+          <%# </li> %>
+          <div class="add-event">
+            <button
+              type="button"
+              class="nav-link cal-btn"
+              data-toggle="modal"
+              data-target="#newSessionModal"
+              data-whatever="@mdo"
+            >
+            Sign In
+            </button>
+          </div>
           <li class="nav-item">
             <%= link_to('Sign Up', new_user_path, :class => 'nav-link') %>
           </li>
