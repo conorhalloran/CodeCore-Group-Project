@@ -14,8 +14,10 @@ class EventsController < ApplicationController
     @task = Task.new
     @teams = Team.all
     @current_user_teams = []
-    current_user.memberships.each do |mship|
-      @current_user_teams << @teams.find_by_id(mship.team_id)
+    if current_user
+      current_user.memberships.each do |mship|
+        @current_user_teams << @teams.find_by_id(mship.team_id)
+      end
     end
 
     @search_events = []
