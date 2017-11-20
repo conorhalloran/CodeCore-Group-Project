@@ -12,7 +12,7 @@
 
     <%# NAVBAR %>
     <nav class="navbar navbar-expand-sm sticky-top">
-      <a class="navbar-brand" href="/"><%= image_tag 'Force_Logo_Transparent_Background.png', style: 'width: 100px;' %></a>
+      <a class="navbar-brand" href="/"><%= image_tag 'Force_Logo_Transparent_Background.png', style: 'width: 125px;' %></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -64,7 +64,7 @@
           </div>
 
             <span class="navbar-text">
-              Hello, <%= current_user.first_name %>
+              &nbsp; Hello, <%= current_user.first_name %> &nbsp;
             </span>
 
             <% if current_user.is_admin? %>
@@ -72,7 +72,7 @@
             <%= link_to 'Admin Dashboard', admin_dashboard_index_path, :class => 'nav-link' %>
             </li>
               <span class="navbar-text">
-                &nbsp; Admin
+                &nbsp; Admin &nbsp;
               </span>
             <% end %>
 
@@ -81,19 +81,39 @@
           </li>
 
         <% else %>
-          <li class="nav-item">
-            <%= link_to('Sign In', new_session_path, :class => 'nav-link') %>
-          </li>
-          <li class="nav-item">
-            <%= link_to('Sign Up', new_user_path, :class => 'nav-link') %>
-          </li>
-        <% end %>
+          <div class="sign-in">
+            <button
+              type="button"
+              class="nav-link cal-btn"
+              data-toggle="modal"
+              data-target="#newSessionModal"
+              data-whatever="@mdo"
+            >
+            Sign In
+            </button>
+          </div>
+          <div class="sign-up">
+            <button
+              type="button"
+              class="nav-link cal-btn"
+              data-toggle="modal"
+              data-target="#newUserModal"
+              data-whatever="@mdo"
+            >
+            Sign Up
+            </button>
+          </div>
+          <% end %>
         </ul>
       </div>
     </nav>
 
     <%# New Modal %>
     <%= render './modals/new_event_modal' %>
+
+    <%# User Modals %>
+    <%= render './modals/new_session_modal' %>
+    <%= render './modals/new_user_modal' %>
 
     <%#= DASHBOARD MODAL %>
     <%= render './modals/user_dashboard_modal' %>
