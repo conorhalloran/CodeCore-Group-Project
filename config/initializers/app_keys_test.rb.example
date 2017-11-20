@@ -1,0 +1,2 @@
+ENV['EMAIL_USER_NAME'] = 'your full email address (i.e. abc@example.com)'
+ENV['EMAIL_PASSWORD'] = 'your email password'
