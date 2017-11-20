@@ -49,17 +49,27 @@ class EventsController < ApplicationController
     @team.event = @event
     @team.save
     @users_names_array = event_params[:team_attributes][:memberships_attributes][:user_id]
-    @user_id_array = []
+    @user_id_array = {}
     @users_names_array.each do |u_n|
-      @user_id_array << (@user_names.select {|k, v| v == u_n})
+      @user_id_array.merge!(@user_names.select {|k, v| v == u_n})
     end
-    @user_id_array.each do |id|
+    @user_id_array.merge!({current_user.id => current_user.full_name})
+    @user_id_array.each_pair do |id, name|
       if id != ""
-        @membership = Membership.new(event_params[:team_attributes][:memberships_attributes])
-        # @membership.user_id = id
-        @membership.user = @users.find_by_id(id)
-        @membership.team = @team
-        @membership.save
+        if id == current_user.id
+          @membership = Membership.new(event_params[:team_attributes][:memberships_attributes])
+          # @membership.user_id = id
+          @membership.user = current_user
+          @membership.is_leader = true
+          @membership.team = @team
+          @membership.save
+        else
+          @membership = Membership.new(event_params[:team_attributes][:memberships_attributes])
+          # @membership.user_id = id
+          @membership.user = @users.find_by_id(id)
+          @membership.team = @team
+          @membership.save
+        end
       end
     end
     respond_to do |format|
