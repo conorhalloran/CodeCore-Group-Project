@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   before_action :authorize_user!, except: [:new, :create]
 
   def new
-    @user = User.new
   end
 
   def edit
