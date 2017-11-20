@@ -35,13 +35,13 @@ $(function(){
   $( "#search-form-and-result" ).toggle('hide')
   });
 
-  $("#largest-text").addEvent("click", function() {largestText();
+  $("#largest-text").on("click", function() {largestText();
   });
 
-  $("#original-text").addEvent("click", function() {originalText();
+  $("#original-text").on("click", function() {originalText();
   });
 
-  $("#smallest-text").addEvent("click", function() {smallestText();
+  $("#smallest-text").on("click", function() {smallestText();
   });
 
   $( ".important-docs" ).click(function() {
@@ -51,6 +51,11 @@ $(function(){
   $( ".team-docs" ).click(function() {
     $( ".docs" ).toggle('hide')
   });
+
+  $("#search-form").submit(function(event) {
+    console.log('sdf')
+    event.preventDefault();
+  })
 
 })
 

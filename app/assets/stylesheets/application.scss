@@ -24,10 +24,6 @@
   margin-right: 5px;
 }
 
-#dashboard_btn {
-  margin-right: 10px;
-}
-
  .simple-calendar {
    .day {
      width: 200px;
@@ -280,4 +276,23 @@
 
 .task-viewer > p{
   margin-bottom: 0;
+}
+
+// Index.html -> Dashboards
+.carousel-item{
+  text-align: center;
+}
+
+// Index.html.erb -> Events
+.search-headers{
+  text-align: center;
+  padding-top: 20px;
+}
+
+.black-text{
+  color: black;
+}
+
+.centering{
+  text-align: center;
 }
