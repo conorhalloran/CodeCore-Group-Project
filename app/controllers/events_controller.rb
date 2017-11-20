@@ -87,6 +87,8 @@ class EventsController < ApplicationController
       if @event.save
         format.html { redirect_to root_path, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
+        EventsMailer.notify_event_creator(@event).deliver_now
+        
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -98,10 +100,15 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1.json
   def update
     @event.slug = nil
+    @message = @event.description
+    @team = event.teams
+
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
+        EventsMailer.leader_notify_guest(@event, @message).deliver_now
+        
       else
         format.html { render :edit }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -142,6 +149,7 @@ class EventsController < ApplicationController
                           :location,
                           :description,
                           :user_id,
+                          :team,
                           :leader_id,
                           :date,
                           :start_time,
