@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171119195729) do
+ActiveRecord::Schema.define(version: 20171119230136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,12 +63,6 @@ ActiveRecord::Schema.define(version: 20171119195729) do
     t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
-  create_table "teams", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "event_id"
-    t.index ["event_id"], name: "index_teams_on_event_id"
   create_table "tasks", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.text "description"
@@ -83,6 +77,14 @@ ActiveRecord::Schema.define(version: 20171119195729) do
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "event_id"
+    t.index ["event_id"], name: "index_teams_on_event_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -90,14 +92,14 @@ ActiveRecord::Schema.define(version: 20171119195729) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
-    t.string "phone_number"
     t.boolean "is_admin", default: false
+    t.string "phone_number"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "events", "teams"
   add_foreign_key "events", "users"
-  add_foreign_key "teams", "events"
   add_foreign_key "tasks", "events"
   add_foreign_key "tasks", "users"
+  add_foreign_key "teams", "events"
 end

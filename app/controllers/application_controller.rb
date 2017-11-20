@@ -8,13 +8,11 @@ class ApplicationController < ActionController::Base
   helper_method :user_signed_in?
 
   def current_user
-    # raise StandardError.new
     @current_user ||= User.find_by(id: session[:user_id])
   end
   helper_method :current_user
 
   def new_event
-    # binding.pry
     @event = Event.new
     @user_names = {}
   end
