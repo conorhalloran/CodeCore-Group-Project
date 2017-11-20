@@ -172,7 +172,7 @@
 }
 
 .d3-2{
-    height: 75%;
+    height: 250px;
     overflow: hidden;
     box-sizing: border-box;
     margin-top: 40px;
@@ -192,7 +192,6 @@
 
 .d5 {
   padding-left: 10px;
-    height:3000px
 }
 
 .btn-outline-dark {
@@ -266,4 +265,19 @@
     margin: 0 auto;
     margin-top: 20px;
     display: block;
+}
+
+.modal-xl{
+  min-width: 1200px;
+}
+
+.task-viewer{
+  overflow: scroll;
+  height: 200px;
+  border: thin rgba(200, 200, 200, 0.5) solid;
+  padding: 20px;
+}
+
+.task-viewer > p{
+  margin-bottom: 0;
 }
