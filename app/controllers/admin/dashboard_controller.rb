@@ -1,4 +1,5 @@
 class Admin::DashboardController < ApplicationController
+  before_action :new_user
 
   def index
       @stats = {
@@ -8,5 +9,8 @@ class Admin::DashboardController < ApplicationController
       @users = User.all
     end
 
+  def new_user
+      @user = User.new
+  end
 
 end
