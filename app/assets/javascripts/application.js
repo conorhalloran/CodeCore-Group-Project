@@ -52,11 +52,6 @@ $(function(){
     $( ".docs" ).toggle('hide')
   });
 
-  $("#search-form").submit(function(event) {
-    console.log('sdf')
-    event.preventDefault();
-  })
-
 })
 
 function largestText() {

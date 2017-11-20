@@ -30,7 +30,7 @@
     <div class='centering'>
       <%= form_tag(events_path, :method => "get", id: "search-form") do %>
         <%= text_field_tag :search, params[:search], placeholder: "Search Here" %>
-        <%= submit_tag "Search", :name => nil, onsubmit: "return false" %>
+        <%= submit_tag "Search", :name => nil %>
       <% end %>
     </div>
 
@@ -65,7 +65,7 @@
       by clicking the New Event button on the page. Events can be joined by
       clicking the sign up button within the events information. Events can also
       be filtered by searching for the events location. Size of the letters can be
-      changed by clicking on the corresponding polar bear on the footer.
+      changed by clicking on the corresponding font size on the footer.
     </p>
   </div>
 </div>
