@@ -12,13 +12,14 @@
 
     <%# NAVBAR %>
     <nav class="navbar navbar-expand-sm sticky-top">
-      <a class="navbar-brand" href="/"><%= image_tag 'Force_Logo_Transparent_Background.png', style: 'width: 100px;' %></a>
+      <a class="navbar-brand" href="/"><%= image_tag 'Force_Logo_Transparent_Background.png', style: 'width: 125px;' %></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
+
           <li class="nav-item">
             <a class="nav-link" href="https://slack.com/"><%= image_tag 'slack.svg', style: 'width: 70px;' %></a>
           </li>
@@ -41,25 +42,37 @@
             <button
               id="dashboard_btn"
               type="button"
-              class="btn btn-outline-danger button-space-sides"
+              class="nav-link cal-btn"
               data-toggle="modal"
               data-target="#dashboardModal"
               data-whatever="@mdo"
             >
-            Dashboard
+            User Dashboard
+            </button>
+          </div>
+
+          <div class="form-inline">
+            <button
+              type="button"
+              class="nav-link cal-btn"
+              data-toggle="modal"
+              data-target="#searchModal"
+              data-whatever="@mdo"
+            >
+            Search
             </button>
           </div>
 
             <span class="navbar-text">
-              Hello, <%= current_user.first_name %>
+              &nbsp; Hello, <%= current_user.first_name %> &nbsp;
             </span>
 
             <% if current_user.is_admin? %>
             <li class="nav-item">
-            <%= link_to 'Dashboard', admin_dashboard_index_path, :class => 'nav-link' %>
+            <%= link_to 'Admin Dashboard', admin_dashboard_index_path, :class => 'nav-link' %>
             </li>
               <span class="navbar-text">
-                &nbsp; Admin
+                &nbsp; Admin &nbsp;
               </span>
             <% end %>
 
@@ -68,115 +81,44 @@
           </li>
 
         <% else %>
-          <li class="nav-item">
-            <%= link_to('Sign In', new_session_path, :class => 'nav-link') %>
-          </li>
-          <li class="nav-item">
-            <%= link_to('Sign Up', new_user_path, :class => 'nav-link') %>
-          </li>
-        <% end %>
+          <div class="sign-in">
+            <button
+              type="button"
+              class="nav-link cal-btn"
+              data-toggle="modal"
+              data-target="#newSessionModal"
+              data-whatever="@mdo"
+            >
+            Sign In
+            </button>
+          </div>
+            <div class="sign-up">
+              <button
+              type="button"
+              class="nav-link cal-btn"
+              data-toggle="modal"
+              data-target="#newUserModal"
+              data-whatever="@mdo"
+              >
+              Sign Up
+            </button>
+          </div>
+          <% end %>
         </ul>
       </div>
     </nav>
 
-    <div class="modal fade" id="newEventModal" tabindex="-1" role="dialog" aria-labelledby="newEventModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="newEventModalLabel">New Event</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-              <%= simple_form_for @new_event do |form| %>
-                <%= form.input :event_type %>
-                <%= form.input :name %>
-                <%= form.input :location %>
-                <%= form.input :description %>
-                <%= form.input :date %>
-                <%= form.input :start_time %>
-                <%= form.input :end_time %>
-                <%= form.submit({class: "btn btn-primary"}) %>
-              <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%# New Modal %>
+    <%= render './modals/new_event_modal' %>
+
+    <%# User Modals %>
+    <%= render './modals/new_session_modal' %>
+    <%= render './modals/new_user_modal' %>
 
     <%#= DASHBOARD MODAL %>
+    <%= render './modals/user_dashboard_modal' %>
 
-    <div class="modal fade" id='dashboardModal' tabindex="-1" role="dialog" aria-labelledby='dashboardLabel' aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id='dashboardLabel'>Dashboard</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="3000">
-              <div class="carousel-inner">
-                <div class="carousel-item active" style="text-align: center">
-                  MEETING AT PORT COQUITLAM
-                </div>
-                <div class="carousel-item" style="text-align: center">
-                  SLIDESHOW MEETING
-                </div>
-                <div class="carousel-item" style="text-align: center">
-                  WHATEVER MEETING
-                </div>
-              </div>
-              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
-
-            <div class="row">
-              <div class="col-md-6">
-                <h1>Current Teams</h1>
-                <ul>
-                  <li id="team-1">Team 1</li>
-                  <p id="team-members" class="hide">abcdefg</p>
-                  <li>Team 2</li>
-                  <li>Team 3</li>
-                  <li>Team 4</li>
-                </ul>
-              </div>
-              <div class="col-md-6">
-                <h2>Briefings</h2>
-
-                <div>
-                  <h2>Important Documents</h2>
-                  <ul>
-                    <li>Campaign Overview</li>
-                    <li>Canvas Petition</li>
-                    <li>Fact Sheet</li>
-                    <li>Brochure</li>
-                    <li>Training</li>
-                  </ul>
-                </div>
-                <div>
-                  <h2>Your Team's Folder</h2>
-                  <ul>
-                    <li>Port Moody Research Folder</li>
-                    <li>Data Log Folders</li>
-                    <li></li>
-                  </ul>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= render './modals/search_modal' %>
 
     <main class="container-fluid">
         <%# ALERTS %>
@@ -200,6 +142,27 @@
 
       <%= yield %>
     </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class='row'>
+          <div class='col-2'>
+            <img class='img-center text-center' src='/assets/polar1.png' width='80px;'/>
+          </div>
+
+          <div class='col-8'style='text-align: center;'>
+            <p style="text-align: center; padding-top: 20px;"><strong> Change Font Size </strong></p>
+            <span id="smallest-text" alt="0.8em" src="/assets/giphy.gif" onclick="smallestText()" style='font-size: 0.9em'> Smaller Font Size </span> |
+            <span id="original-text" alt="0.8em" src="/assets/giphy.gif" onclick="originalText()" style='font-size: 1em' > Original Font Size </span> |
+            <span id="largest-text" alt="1.1em" src="/assets/giphy.gif" onclick="largestText()" style='font-size: 1.2em' > Bigger Font Size </span>
+          </div>
+
+          <div class='col-2'>
+            <img class='img-center text-center' src='/assets/polar1.png' width='80px;'/>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <%# console %>
 

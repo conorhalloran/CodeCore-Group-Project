@@ -1,0 +1,88 @@
+<div class="modal fade" id='<%= event.id %>' tabindex="-1" role="dialog" aria-labelledby='<%= event.id %>Label' aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id='<%= event.id %>Label'><%= event.name %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class='row modal-body'>
+        <div class="col-md-4 event-information">
+
+          <p style='text-align: center'><strong>Event Information</strong></p>
+          <div class = 'event-box'>
+            <p><strong><%= event.event_type.titleize %> Name :</strong> <%= event.name %></p>
+            <p><strong>Location :</strong> <%= event.location %></p>
+            <p><strong>Additional Info :</strong> <%= event.description %></p>
+            <p><strong>Leader :</strong> <%= event.user.full_name %></p>
+            <p><strong>Date :</strong> <%= event.date.strftime("%B %d, %Y, %A") %></p>
+            <p><strong>Start :</strong> <%= event.start_time.strftime("%H:%M") %></p>
+            <p><strong>End :</strong> <%= event.end_time.strftime("%H:%M") %></p>
+            <div class = 'text-right'>
+              <%= link_to 'Edit', edit_event_path(event), :class => 'btn btn-outline-dark' %>
+              <%= link_to 'Delete',
+                event_path(event),
+                :class => 'btn btn-outline-dark',
+                data: {confirm: 'Are you sure?'},
+                method: :delete
+              %>
+            </div>
+          </div>
+        </div>
+
+        <div class='col-md-4 event-information'>
+
+          <div class='task-create'>
+          <h3>Create Task:</h3>
+
+            <%= simple_form_for [event, @task] do |f| %>
+              <%= f.error_notification %>
+
+              <div class="form-inputs">
+                <%= f.input :name %>
+                <%= f.input :description %>
+                <%= f.association :user %>
+                <%= f.association :event %>
+                <%= f.input :status %>
+                <%= f.input :due_by %>
+              </div>
+              <div class="form-actions text-right">
+                <%= f.button :submit, :class => 'btn btn-outline-dark' %>
+              </div>
+            <% end %>
+          </div>
+
+        </div>
+
+        <div class='col-md-4'>
+          <div class='group-members'>
+            <p style='text-align: center'><strong>Group Members</strong></p>
+            <div class="task-viewer">
+              <% event.tasks.each do |task| %>
+                <p><strong> User: </strong> <%= task.user&.full_name %></p>
+                <p><strong> Email: </strong><%=task.user.email%></p>
+                <hr>
+              <% end %>
+            </div>
+          </div>
+
+          <div>
+            <p style='text-align: center; padding-top: 20px;'><strong>Task List</strong></p>
+              <div class="task-viewer">
+              <% event.tasks.each do |task| %>
+                <p><strong> Task Name: </strong> <%= task.name %></p>
+                <p><strong> Description: </strong><%= task.description %></p>
+                <p><strong> Status: </strong><%= task.status %></p>
+                <p><strong> Due By: </strong><%= task.due_by %></p>
+                <p><strong> Assigned By: </strong><%= task.assigned_by %></p>
+                <hr>
+              <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

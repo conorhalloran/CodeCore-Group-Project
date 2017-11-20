@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def new_event
-    @new_event = Event.new
+    @event = Event.new
+    @user_names = {}
   end
   helper_method :new_event
 

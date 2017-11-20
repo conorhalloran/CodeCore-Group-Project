@@ -1,5 +1,10 @@
 class User < ApplicationRecord
   has_many :events, dependent: :nullify
+  has_many :tasks, dependent: :destroy
+  has_many :event_tasks, through: :tasks, source: :event
+
+  has_many :memberships
+  has_many :teams, through: :memberships
 
   before_save { self.email = email.downcase }
   validates :first_name, presence: true

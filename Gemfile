@@ -37,6 +37,7 @@ gem 'pry' # pry gem itself
 gem 'pry-rails' # a gem that integrates pry with rails seamlessly
 gem 'hirb'
 gem 'friendly_id', '~> 5.1.0'
+gem 'cocoon'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

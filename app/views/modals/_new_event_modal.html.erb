@@ -1,0 +1,37 @@
+<div class="modal fade" id="newEventModal" tabindex="-1" role="dialog" aria-labelledby="newEventModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newEventModalLabel">New Event</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <%= simple_form_for @event do |f| %>
+          <div class="form-inputs">
+            <%= f.input :event_type %>
+            <%= f.input :name %>
+            <%= f.input :location %>
+            <%= f.input :description %>
+            <h3>Team</h3>
+            <div id="team">
+              <%= f.simple_fields_for :team_attributes do |t| %>
+                <%= t.input :name %>
+                  <%= t.simple_fields_for :memberships_attributes do |m| %>
+                  <%= m.input :user_id, collection: @user_names.values, input_html: {class: 'multiselectuser', multiple: true} %>
+                  <% end %>
+              <% end %>
+            </div>
+            <%= f.input :date %>
+            <%= f.input :start_time %>
+            <%= f.input :end_time %>
+            <div class="form-actions">
+              <%= f.button :submit %>
+            </div>
+          </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
