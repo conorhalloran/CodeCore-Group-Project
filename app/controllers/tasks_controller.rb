@@ -33,7 +33,6 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.assigned_by = current_user.id
     @task.user_id = @user_names.key(task_params[:user_id])
-
     respond_to do |format|
       if @task.save
         format.html { redirect_to root_path, notice: 'Task was successfully created.' }

@@ -271,13 +271,27 @@
 
 .task-viewer{
   overflow: scroll;
-  height: 200px;
+  height: 300px;
   border: thin rgba(200, 200, 200, 0.5) solid;
   padding: 20px;
 }
 
-.task-viewer > p{
+.task-viewer > p {
   margin-bottom: 0;
+}
+
+.task-viewer > ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.task-viewer > ul > li {
+  font-size: 16px;
+}
+
+.task-viewer > ul > p {
+  list-style: none;
+  margin-bottom: 2px;
 }
 
 // Index.html -> Dashboards

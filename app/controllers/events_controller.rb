@@ -4,21 +4,22 @@ class EventsController < ApplicationController
   before_action :new_event
   before_action :new_user
   before_action :current_user
-  before_action :get_users, only: [:new, :create, :index]
-  before_action :get_users_names_and_ids, only: [:new, :create, :index]
+  before_action :get_current_user_teams
+  before_action :get_users
+  before_action :get_users_names_and_ids, only: [:new, :create, :index, :edit]
 
   # GET /events
   # GET /events.json
   def index
     @events = Event.all
     @task = Task.new
-    @teams = Team.all
-    @current_user_teams = []
-    if current_user
-      current_user.memberships.each do |mship|
-        @current_user_teams << @teams.find_by_id(mship.team_id)
-      end
-    end
+    # @teams = Team.all
+    # @current_user_teams = []
+    # if current_user
+    #   current_user.memberships.each do |mship|
+    #     @current_user_teams << @teams.find_by_id(mship.team_id)
+    #   end
+    # end
 
     @search_events = []
 
@@ -44,8 +45,9 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    @user_names = {}
     @event = Event.friendly.find(params[:id])
+    @teams = Team.all
+    @team = @teams.find_by_event_id(@event.id)
   end
 
   # POST /events
@@ -168,5 +170,13 @@ class EventsController < ApplicationController
     @users.each { |u| @user_names.merge!({u.id => u.full_name}) }
   end
 
-
+  def get_current_user_teams
+    @teams = Team.all
+    @current_user_teams = []
+    if current_user
+      current_user.memberships.each do |mship|
+        @current_user_teams << @teams.find_by_id(mship.team_id)
+      end
+    end
+  end
 end

@@ -11,7 +11,7 @@
       <%= f.simple_fields_for :team do |t| %>
         <%= t.input :name %>
         <%= t.simple_fields_for :memberships do |m| %>
-          <%= m.input :users, collection: @users, input_html: {multiple: true} %>
+          <%= m.input :users, collection: @user_names.values, input_html: {multiple: true} %>
         <% end %>
       <% end %>
     </div>

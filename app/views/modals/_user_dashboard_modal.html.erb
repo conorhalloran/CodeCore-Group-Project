@@ -33,15 +33,17 @@
 
         <div class="row modal-body">
           <div class="col-md-6 modal-team">
-            <p class='centering'><strong>Current Teams</strong></p>
-            <ul class='team-box'>
-              <% @current_user_teams.each do |team| %>
-                <li id="team-1" style="cursor: pointer"><em><%= team.name %></em></li>
+            <p class='centering'><strong>My Teams</strong></p>
+            <div class="task-viewer">
+              <ul>
+                <% @current_user_teams.each do |team| %>
+                <li id="team-1"><strong><%= team.name %></strong></li>
                 <% team.memberships.each do |mship| %>
-                  <p style="margin-bottom: 1px;"><%= @users.find_by_id(mship.user_id).full_name %></p>
+                <p><%= @users.find_by_id(mship.user_id).full_name %></p>
                 <% end %>
-              <% end %>
-            </ul>
+                <% end %>
+              </ul>
+            </div>
           </div>
 
           <div class="col-md-6 modal-team">
