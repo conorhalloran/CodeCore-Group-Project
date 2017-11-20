@@ -45,7 +45,6 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @user_names = {}
-    @event = Event.friendly.find(params[:id])
   end
 
   # POST /events
