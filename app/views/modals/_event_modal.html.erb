@@ -68,8 +68,14 @@
               <% @teams.find_by_event_id(event.id).memberships.each do |mem| %>
                 <% member = @users.find_by_id(mem.user_id) %>
                 <p><strong><%= member.full_name %></strong></p>
-                <p><%= member.email %></p>
+                <p class = 'mb-2'><%= member.email %></p>
               <% end %>
+            </div>
+            <div class = 'text-right mt-2'>
+              <%= link_to 'Join',
+                edit_event_path(event),
+                :class => 'btn btn-outline-dark'
+              %>
             </div>
           </div>
 
