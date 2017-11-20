@@ -73,9 +73,8 @@
             <div class="task-viewer">
               <% @teams.find_by_event_id(event.id).memberships.each do |mem| %>
                 <% member = @users.find_by_id(mem.user_id) %>
-                <p><strong> User: </strong> <%= member.full_name %></p>
-                <p><strong> Email: </strong><%= member.email %></p>
-                <hr>
+                <p><strong><%= member.full_name %></strong></p>
+                <p><%= member.email %></p>
               <% end %>
             </div>
           </div>
