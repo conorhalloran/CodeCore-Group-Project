@@ -15,7 +15,7 @@
             <div class="carousel-item centering <% if index == 0 %>
                active
             <% end %>">
-              <strong>Event Name: </strong> <%=team.event.name%> | <strong>Event Location: </strong> <%=team.event.location%> | <strong>Event Time: </strong> <%=team.event.start_time.strftime('%Y-%B-%d')%>
+              <strong> <%=team.event.name%> </strong> - <%= team.event.event_type %> - is coming up.  In :  <strong> <%=team.event.location%> </strong>On : <strong> <%=team.event.start_time.strftime('%Y-%B-%d')%> </strong>
             </div>
             <% end %>
           </div>
@@ -35,10 +35,10 @@
             <div class="task-viewer">
               <ul>
                 <% @current_user_teams.each do |team| %>
-                  <li id="team-1"><strong><%= team.name %></strong></li>
+                  <li id="team-1" class="mt-2"><strong>Team <%= team.name %></strong></li>
                   <% team.memberships.each do |mship| %>
-                    <p class = 'mt-2'><em>Name: </em><%= @users.find_by_id(mship.user_id).full_name %></p>
-                    <p><em>Email: </em><%= @users.find_by_id(mship.user_id).email %></p>
+                    <p class = 'mt-2'><%= @users.find_by_id(mship.user_id).full_name %></p>
+                    <p><%= @users.find_by_id(mship.user_id).email %></p>
                   <% end %>
                 <% end %>
               </ul>

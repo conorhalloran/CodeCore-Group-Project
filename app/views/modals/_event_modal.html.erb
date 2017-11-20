@@ -18,8 +18,9 @@
             <p><strong>Additional Info :</strong> <%= event.description %></p>
             <p><strong>Leader :</strong> <%= event.user.full_name %></p>
             <p><strong>Date :</strong> <%= event.start_time.strftime("%B %d, %Y, %A") %></p>
-            <p><strong>Start :</strong> <%= event.start_time.strftime("%H:%M") %></p>
-            <p><strong>End :</strong> <%= event.end_time.strftime("%H:%M") %></p>
+            <% timehour = rand(1..8) %>
+            <p><strong>Start :</strong> <%= timehour %>:00pm </p>
+            <p><strong>End :</strong> <%= timehour + 2 %>:00pm </p>
             <div class = 'text-right'>
 
               <%= link_to 'Edit',
@@ -48,7 +49,7 @@
               <div class="form-inputs">
                 <%= f.input :name %>
                 <%= f.input :description %>
-                <%= f.input :user_id, label: "Members", collection: @user_names.values, input_html: {class: 'chosen-select'} %>
+                <%= f.input :user_id, label: "Assigned To", collection: @user_names.values, input_html: {class: 'chosen-select'} %>
                 <%= f.input :status %>
                 <%= f.input :due_by %>
                 <%= f.hidden_field :event_id, :value => event.id %>
