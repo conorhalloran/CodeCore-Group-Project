@@ -3,5 +3,5 @@
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready(function () {
-    $('.chosen-select').chosen({ width: '450px', placeholder_text_multiple: 'Select Team members...' })
+    $('.chosen-select').chosen({ width: '90%', placeholder_text_multiple: 'Select Team members...' })
 });
