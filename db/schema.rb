@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20171119230136) do
     t.datetime "updated_at", null: false
     t.datetime "start_time"
     t.datetime "end_time"
-    t.string "slug"
     t.bigint "team_id"
+    t.string "slug"
     t.index ["team_id"], name: "index_events_on_team_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
@@ -92,8 +92,8 @@ ActiveRecord::Schema.define(version: 20171119230136) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
-    t.string "phone_number"
     t.boolean "is_admin", default: false
+    t.string "phone_number"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

@@ -65,7 +65,7 @@
           <div class='group-members'>
             <p class='centering'><strong>Team Members</strong></p>
             <div class="task-viewer">
-              <% Team.all.find_by_id(event.id).memberships.each do |mem| %>
+              <% @teams.find_by_event_id(event.id).memberships.each do |mem| %>
                 <% member = @users.find_by_id(mem.user_id) %>
                 <p><strong> User: </strong> <%= member.full_name %></p>
                 <p><strong> Email: </strong><%= member.email %></p>

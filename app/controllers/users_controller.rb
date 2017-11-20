@@ -4,7 +4,6 @@ class UsersController < ApplicationController
     before_action :authorize_user!, except: [:new, :create]
 
     def index
-        @user = User.all
     end
 
     def show

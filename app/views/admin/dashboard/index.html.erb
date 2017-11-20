@@ -1,7 +1,5 @@
-<h1>Admin Dashboard</h1>
-
-<h2>Event Count: <%= @stats[:event_count] %></h2>
-<h2>User Count: <%= @stats[:user_count] %></h2>
+<p class='text-center pt-4'><strong>ADMIN DASHBOARD</strong></p>
+<p class='text-center'><strong>Event Count: </strong><%= @stats[:event_count] %> | <strong>User Count: </strong><%= @users.count %></p>
 
 <table class="table">
   <tbody>
@@ -20,7 +18,7 @@
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
         <td><%= user.email %></td>
-        <td><%= user.created_at %></td>
+        <td><%= user.created_at.strftime("%B %d, %Y") %></td>
         <td><%= user.is_admin? %></td>
       </tr>
     <% end %>
