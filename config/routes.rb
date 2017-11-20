@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
 
+  resources :events, only: [:index, :new, :create]
+
   get '/dashboards/index', to: 'dashboards#index'
 
   namespace :admin do
