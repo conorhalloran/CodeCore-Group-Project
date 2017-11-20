@@ -48,13 +48,7 @@
               <div class="form-inputs">
                 <%= f.input :name %>
                 <%= f.input :description %>
-                <%# <%= f.association :user %>
-                <%= f.simple_fields_for :team_attributes do |t| %>
-                  <%= t.input :name %>
-                    <%= t.simple_fields_for :memberships_attributes do |m| %>
-                    <%= m.input :user_id, label: "Members", collection: @user_names.values, input_html: {class: 'chosen-select', multiple: true} %>
-                    <% end %>
-                <% end %>
+                <%= f.input :user_id, label: "Members", collection: @user_names.values, input_html: {class: 'chosen-select'} %>
                 <%= f.input :status %>
                 <%= f.input :due_by %>
                 <%= f.hidden_field :event_id, :value => event.id %>
@@ -87,7 +81,8 @@
                 <p><strong> Description: </strong><%= task.description %></p>
                 <p><strong> Status: </strong><%= task.status %></p>
                 <p><strong> Due By: </strong><%= task.due_by %></p>
-                <p><strong> Assigned By: </strong><%= @users.find_by_id(task.assigned_by).full_name %></p>
+                <p><strong> Assigned To: </strong><%= @users.find_by_id(task.user_id).full_name %></p>
+                <p><strong> Task Delegate: </strong><%= @users.find_by_id(task.assigned_by).full_name %></p>
                 <hr>
               <% end %>
               </div>
