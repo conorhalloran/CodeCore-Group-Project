@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history, :finders]
+  mount_uploader :attachment, AttachmentUploader
   has_many :tasks, dependent: :destroy
   belongs_to :user
   has_many :teams, class_name: "Team"

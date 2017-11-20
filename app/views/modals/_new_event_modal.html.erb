@@ -14,6 +14,7 @@
             <%= f.input :name %>
             <%= f.input :location %>
             <%= f.input :description %>
+            <%= f.file_field :attachment %>
             <h3>Team</h3>
             <div id="team">
               <%= f.simple_fields_for :team_attributes do |t| %>

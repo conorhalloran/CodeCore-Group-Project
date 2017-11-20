@@ -108,6 +108,7 @@ class EventsController < ApplicationController
                           :team,
                           :leader_id,
                           :date,
+                          :attachment,
                           :start_time,
                           :end_time,
                           :team_id,

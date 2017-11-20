@@ -39,6 +39,9 @@ gem 'hirb'
 gem 'friendly_id', '~> 5.1.0'
 gem 'cocoon'
 gem 'chosen-rails'
+gem 'carrierwave', '~> 1.0'
+gem "mini_magick"
+gem 'fog-aws'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

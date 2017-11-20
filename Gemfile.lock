@@ -52,6 +52,10 @@ GEM
     builder (3.2.3)
     byebug (9.1.0)
     cancancan (2.1.0)
+    carrierwave (1.2.1)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     chosen-rails (1.5.2)
       coffee-rails (>= 3.2)
       railties (>= 3.0)
@@ -69,10 +73,27 @@ GEM
     cowsay (0.3.0)
     crass (1.0.3)
     erubi (1.7.0)
+    excon (0.59.0)
     execjs (2.7.0)
     faker (1.8.4)
       i18n (~> 0.5)
     ffi (1.9.18)
+    fog-aws (1.4.1)
+      fog-core (~> 1.38)
+      fog-json (~> 1.0)
+      fog-xml (~> 0.1)
+      ipaddress (~> 0.8)
+    fog-core (1.45.0)
+      builder
+      excon (~> 0.58)
+      formatador (~> 0.2)
+    fog-json (1.0.2)
+      fog-core (~> 1.0)
+      multi_json (~> 1.10)
+    fog-xml (0.1.3)
+      fog-core
+      nokogiri (>= 1.5.11, < 2.0.0)
+    formatador (0.2.5)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
     globalid (0.4.1)
@@ -80,6 +101,7 @@ GEM
     hirb (0.7.3)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
+    ipaddress (0.8.3)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -101,6 +123,10 @@ GEM
     mail (2.7.0)
       mini_mime (>= 0.1.1)
     method_source (0.9.0)
+    mime-types (3.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2016.0521)
+    mini_magick (4.8.0)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.10.3)
@@ -200,17 +226,20 @@ DEPENDENCIES
   bootstrap (~> 4.0.0.beta)
   byebug
   cancancan (~> 2.0)
+  carrierwave (~> 1.0)
   chosen-rails
   cocoon
   coffee-rails (~> 4.2)
   cowsay (~> 0.3.0)
   faker
+  fog-aws
   friendly_id (~> 5.1.0)
   hirb
   jbuilder (~> 2.5)
   jquery-rails
   letter_opener
   listen (>= 3.0.5, < 3.2)
+  mini_magick
   pg (~> 0.18)
   pry
   pry-rails
