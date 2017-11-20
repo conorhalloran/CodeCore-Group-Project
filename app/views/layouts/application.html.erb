@@ -25,6 +25,7 @@
           </li>
 
           <% if user_signed_in? %>
+          <% if controller_name == "events" && action_name = "index" %>
 
           <div class="add-event">
             <button
@@ -54,6 +55,7 @@
           <div class="form-inline">
             <a class = 'nav-link cal-btn' href='#search-area'> Search </a>
           </div>
+          <% end %>
 
             <span class="navbar-text">
               &nbsp; Hello, <%= current_user.first_name %> &nbsp;
@@ -100,6 +102,7 @@
       </div>
     </nav>
 
+    <% if controller_name == "events" && action_name = "index" %>
     <%# New Modal %>
     <%= render './modals/new_event_modal' %>
 
@@ -109,6 +112,7 @@
 
     <%#= DASHBOARD MODAL %>
     <%= render './modals/user_dashboard_modal' %>
+    <% end %>
 
     <main class="container-fluid">
         <%# ALERTS %>
