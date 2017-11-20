@@ -21,7 +21,7 @@
             <% timehour = rand(1..8) %>
             <p><strong>Start :</strong> <%= timehour %>:00pm </p>
             <p><strong>End :</strong> <%= timehour + 2 %>:00pm </p>
-            <p><strong>File Uploads:</strong><%= link_to event.file_file_name, event.attachment.url if event.attachment.present?  %></p>
+            <p><strong>File Uploads:</strong></br><%= link_to "#{event.attachment.name}", event.attachment.url if event.attachment.present?  %></p>
             <div class = 'text-right'>
 
               <%= link_to 'Edit',
