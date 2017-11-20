@@ -48,10 +48,10 @@
               <div class="form-inputs">
                 <%= f.input :name %>
                 <%= f.input :description %>
-                <%= f.association :user %>
-                <%= f.association :event %>
+                <%= f.input :user_id, collection: @user_names.values %>
                 <%= f.input :status %>
                 <%= f.input :due_by %>
+                <%= f.hidden_field :event_id, :value => event.id %>
               </div>
               <div class="form-actions text-right">
                 <%= f.button :submit, :class => 'btn btn-outline-dark' %>
@@ -63,13 +63,14 @@
 
         <div class='col-md-4'>
           <div class='group-members'>
-            <p class='centering'><strong>Group Members</strong></p>
+            <p class='centering'><strong>Team Members</strong></p>
             <div class="task-viewer">
-              <% event.tasks.each do |task| %>
-                <p><strong> User: </strong> <%= task.user&.full_name %></p>
-                <p><strong> Email: </strong><%=task.user.email%></p>
+              <% byebug %>
+              <%# Team.all.find_by_id(event.id).memberships.each do |mem| %>
+                <p><strong> User: </strong> <%#= mem %></p>
+                <p><strong> Email: </strong><%#=  %></p>
                 <hr>
-              <% end %>
+              <%# end %>
             </div>
           </div>
 
@@ -81,7 +82,7 @@
                 <p><strong> Description: </strong><%= task.description %></p>
                 <p><strong> Status: </strong><%= task.status %></p>
                 <p><strong> Due By: </strong><%= task.due_by %></p>
-                <p><strong> Assigned By: </strong><%= task.assigned_by %></p>
+                <p><strong> Assigned By: </strong><%= @users.find_by_id(task.assigned_by).full_name %></p>
                 <hr>
               <% end %>
               </div>
