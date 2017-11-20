@@ -19,7 +19,7 @@
               <%= f.simple_fields_for :team_attributes do |t| %>
                 <%= t.input :name %>
                   <%= t.simple_fields_for :memberships_attributes do |m| %>
-                  <%= m.input :user_id, collection: @user_names.values, input_html: {class: 'multiselectuser', multiple: true} %>
+                  <%= m.input :user_id, label: "Members", collection: @user_names.values, input_html: {class: 'chosen-select', multiple: true} %>
                   <% end %>
               <% end %>
             </div>
