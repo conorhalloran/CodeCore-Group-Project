@@ -12,6 +12,11 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
     @task = Task.new
+    @teams = Team.all
+    @current_user_teams = []
+    current_user.memberships.each do |mship|
+      @current_user_teams << @teams.find_by_id(mship.team_id)
+    end
 
     @search_events = []
 

@@ -35,11 +35,12 @@
           <div class="col-md-6 modal-team">
             <p class='centering'><strong>Current Teams</strong></p>
             <ul class='team-box'>
-              <li id="team-1"><em>Team 1</em></li>
-              <p id="team-members" class="hide">abcdefg</p>
-              <li><em>Team 2</em></li>
-              <li><em>Team 3</em></li>
-              <li><em>Team 4</em></li>
+              <% @current_user_teams.each do |team| %>
+                <li id="team-1" style="cursor: pointer"><em><%= team.name %></em></li>
+                <% team.memberships.each do |mship| %>
+                  <p style="margin-bottom: 1px;"><%= @users.find_by_id(mship.user_id).full_name %></p>
+                <% end %>
+              <% end %>
             </ul>
           </div>
 
