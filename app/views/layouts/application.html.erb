@@ -12,7 +12,7 @@
 
     <%# NAVBAR %>
     <nav class="navbar navbar-expand-sm sticky-top">
-      <a class="navbar-brand" href="/"><%= image_tag 'Force_Logo_Transparent_Background.png', style: 'width: 100px;' %></a>
+      <a class="navbar-brand" href="/"><%= image_tag 'Force_Logo_Transparent_Background.png', style: 'width: 125px;' %></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -64,7 +64,7 @@
           </div>
 
             <span class="navbar-text">
-              Hello, <%= current_user.first_name %>
+              &nbsp; Hello, <%= current_user.first_name %> &nbsp;
             </span>
 
             <% if current_user.is_admin? %>
@@ -72,7 +72,7 @@
             <%= link_to 'Admin Dashboard', admin_dashboard_index_path, :class => 'nav-link' %>
             </li>
               <span class="navbar-text">
-                &nbsp; Admin
+                &nbsp; Admin &nbsp;
               </span>
             <% end %>
 
