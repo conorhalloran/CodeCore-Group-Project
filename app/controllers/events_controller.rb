@@ -8,6 +8,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    @task = Task.new
 
     @search_events = []
 
