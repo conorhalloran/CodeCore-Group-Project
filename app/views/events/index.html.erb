@@ -1,68 +1,25 @@
-  <div class = 'row'>
-    <div class = 'col-4'>
 
-      <div class = 'location-search'>
+<%= month_calendar events: @events do |date, events| %>
+  <%= date.day %>
 
-      <p style="text-align: center; padding-top: 20px;"><strong> Location Search </strong></p>
+  <% events.each do |event| %>
+    <%# MODAL %>
+    <%= render './modals/event_modal', event: event %>
 
-      <div style='text-align: center'>
-        <%= form_tag(events_path, :method => "get", id: "search-form") do %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search Here" %>
-          <%= submit_tag "Search", :name => nil %>
-        <% end %>
-      </div>
-
-      <div id="search-form-and-result">
-        <% if @search_events.blank? %>
-          <h4 style='text-align: center'>Hmm... looks like there are no events containing "<%= params[:search] %>".</h4>
-
-        <% elsif params[:search].present? %>
-          <h4 style='text-align: center'>Events found containing "<%= params[:search] %>"</h4>
-          <% @search_events.each do |result| %>
-            <ul>
-              <button
-                type="button"
-                class="nav-link cal-btn"
-                data-toggle="modal"
-                data-target='#<%= result.id %>'
-                data-whatever="@mdo"
-                style='padding-left: 0;'
-              >
-                <span style='color: black'>Event Name:</span> <%= result.name %>
-              </button>
-              Event Date: <%= result.date.strftime("%B %d, %Y") %><br>
-              Location: <%= result.location %>
-            </ul>
-          <% end %>
-        <% end %>
-        </div>
-      </div>
+    <div class = 'subsection'>
+      <button
+        id="new_event_btn"
+        type="button"
+        class="event-button"
+        data-toggle="modal"
+        data-target='#<%= event.id %>'
+        data-whatever="@mdo"
+      ><%= event.name.truncate(10) %> | <%= event.event_type %>
+      </button>
     </div>
-
-    <div class = 'col-8'>
-      <%= month_calendar events: @events do |date, events| %>
-        <%= date.day %>
-
-        <% events.each do |event| %>
-          <%# MODAL %>
-          <%= render './modals/event_modal', event: event %>
-
-          <div class = 'subsection'>
-            <button
-              id="new_event_btn"
-              type="button"
-              class="event-button"
-              data-toggle="modal"
-              data-target='#<%= event.id %>'
-              data-whatever="@mdo"
-            ><%= event.name.truncate(10) %> | <%= event.event_type %>
-            </button>
-          </div>
-          <br>
-        <% end %>
-      <% end %>
-    </div>
-</div>
+    <br>
+  <% end %>
+<% end %>
 
 <div class = 'col-8'>
   <p style="text-align: center; padding-top: 20px;"><strong> Instructions </strong></p>
