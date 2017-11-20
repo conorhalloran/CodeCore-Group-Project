@@ -101,7 +101,7 @@
         </ul>
       </div>
     </nav>
-    <% if controller_name == "events" && action_name == "index" %>
+    <% if controller_name == "events" && action_name == "index" && user_signed_in? %>
       <%# New Modal %>
       <%= render './modals/new_event_modal' %>
 

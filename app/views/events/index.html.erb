@@ -28,7 +28,7 @@
     <p class='search-headers'><strong> Location Search </strong></p>
 
     <div class='centering'>
-      <%= form_tag(events_path, :method => "get", id: "search-form") do %>
+      <%= form_tag(events_path(:anchor => 'search-area'), :method => "get", id: "search-form") do %>
         <%= text_field_tag :search, params[:search], placeholder: "Search Here" %>
         <%= submit_tag "Search", :name => nil %>
       <% end %>
