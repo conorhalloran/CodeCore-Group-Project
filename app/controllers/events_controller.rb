@@ -98,10 +98,15 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1.json
   def update
     @event.slug = nil
+    @message = @event.description
+
+    p "#{@event.name} ------------------------------"
+
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
+        EventsMailer.leader_notify_guest(@event, @message).deliver_now
       else
         format.html { render :edit }
         format.json { render json: @event.errors, status: :unprocessable_entity }

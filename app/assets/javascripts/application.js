@@ -53,6 +53,10 @@ $(function(){
     $( ".docs" ).toggle('hide')
   });
 
+  $(".search-submit-button").submit(function() {
+    return false;
+  })
+
 })
 
 function largestText() {
