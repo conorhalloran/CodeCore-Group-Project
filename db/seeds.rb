@@ -19,7 +19,7 @@ EVENT_TYPES = [
 Event.destroy_all
 User.destroy_all
 Guest.destroy_all
-
+Task.destroy_all
 
 
 super_user = User.create(
@@ -60,6 +60,7 @@ end
 
 guests = Guest.all
 
+
 10.times.each do
   start_time = Faker::Date.between(Date.today, 1.month.from_now)
   Event.create(
@@ -70,13 +71,30 @@ guests = Guest.all
     date: Faker::Date.between(Date.today, 1.month.from_now),
     start_time: start_time,
     end_time: start_time,
-    user: users.sample
+    user: users.sample 
   )
 end
 
 events = Event.all
 
+events.each do |event|
+  rand(0..5).times.each do
+    task = Task.create(
+      name: Faker::Ancient.primordial,
+      description: Faker::Hacker.say_something_smart,
+      user_id: users.sample.id,
+      event_id: events.sample.id,
+      status: Faker::Simpsons.location,
+      due_by: Faker::Date.between(Date.today, 1.month.from_now),
+      assigned_by: users.sample.id
+      )
+  end
+end
+
+tasks = Task.all
+
 puts Cowsay.say("Created #{users.count} users", :tux)
 puts Cowsay.say("Created #{events.count} events", :tux)
 puts Cowsay.say("Created #{guests.count} guests", :tux)
+puts Cowsay.say("Created #{tasks.count} tasks", :tux)
 puts "Login as admin user with #{super_user.email} and password of '#{PASSWORD}'!"

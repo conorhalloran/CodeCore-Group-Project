@@ -36,9 +36,36 @@
             <p style='text-align: center'><strong>Group Members</strong></p>
             <div class="d3-2">
               <div class="d4">
-                <div class="d5"><%= event.user.full_name %> | <%= event.user.email %></div>
+                <% event.tasks.each do |task| %>
+                  <div class="d5"><%= task.user&.full_name %> | <%=task.user.email%></div>
+                <% end %>
               </div>
             </div>
+          </div>
+          <div class='col-md-6'>
+          
+            <div class='task-create'>
+            <h3>Create Task:</h3>
+
+              <%= simple_form_for [event, @task] do |f| %>
+                <%= f.error_notification %>
+
+                <div class="form-inputs">
+                  <%= f.input :name %>
+                  <%= f.input :description %>
+                  <%= f.association :user %>
+                  <%= f.association :event %>
+                  <%= f.input :status %>
+                  <%= f.input :due_by %>
+                  <%= f.input :assigned_by %>
+                </div>
+
+                <div class="form-actions">
+                  <%= f.button :submit %>
+                </div>
+              <% end %>
+            </div> 
+          
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    @task = Task.new
 
     @search_events = []
 
@@ -22,6 +23,8 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @tasks = @event.tasks.order(created_at: :desc)
+    @task = Task.new
   end
 
   # GET /events/new
