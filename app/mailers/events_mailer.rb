@@ -1,4 +1,10 @@
 class EventsMailer < ApplicationMailer
+  def notify_event_creator(event)
+    @event = event
+    mail(to: 'powerofpolarbear@gmail.com', subject: "You have just created an event.")  
+  end
+
+
   def notify_event_reminder_user(event, user)
     @event = event
     @user = user
@@ -46,7 +52,7 @@ class EventsMailer < ApplicationMailer
     @event = event
     # @guest = guest
     @message = message
-    mail(to: 'dkim.steve@gmail.com', subject: "There has been an update to your")
+    mail(to: 'powerofpolarbear@gmail.com', subject: "There has been an update to your")
   end
 
 
