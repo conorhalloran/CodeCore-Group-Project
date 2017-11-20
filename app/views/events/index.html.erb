@@ -25,9 +25,9 @@
 
 <div class = 'row' id='search-area'>
   <div class = 'col-4'>
-    <p style="text-align: center; padding-top: 20px;"><strong> Location Search </strong></p>
+    <p class='search-headers'><strong> Location Search </strong></p>
 
-    <div style='text-align: center'>
+    <div class='centering'>
       <%= form_tag(events_path, :method => "get", id: "search-form") do %>
         <%= text_field_tag :search, params[:search], placeholder: "Search Here" %>
         <%= submit_tag "Search", :name => nil, onsubmit: "return false" %>
@@ -35,10 +35,10 @@
     </div>
 
     <% if @search_events.blank? %>
-      <p style='text-align: center; padding-top: 20px;'><strong>Hmm... looks like there are no events containing "<%= params[:search] %>".</strong></p>
+      <p class='search-headers'><strong>Hmm... looks like there are no events containing "<%= params[:search] %>".</strong></p>
 
     <% elsif params[:search].present? %>
-      <p style='text-align: center; padding-top: 20px;'><strong>Events found containing "<%= params[:search] %>"</strong></p>
+      <p class='search-headers'><strong>Events found containing "<%= params[:search] %>"</strong></p>
       <% @search_events.each do |result| %>
         <ul>
           <button
@@ -49,7 +49,7 @@
             data-whatever="@mdo"
             style='padding-left: 0;'
           >
-            <span style='color: black'>Event Name:</span> <%= result.name %>
+            <span class='black-text'>Event Name:</span> <%= result.name %>
           </button>
           Event Date: <%= result.start_time.strftime("%B %d, %Y") %><br>
           Location: <%= result.location %>
@@ -59,7 +59,7 @@
     </div>
 
   <div class = 'col-8'>
-    <p style="text-align: center; padding-top: 20px;"><strong> Instructions </strong></p>
+    <p class='search-headers'><strong> Instructions </strong></p>
     <p>
       Welcome to Force of Nature's event sign up application. Events can be added
       by clicking the New Event button on the page. Events can be joined by

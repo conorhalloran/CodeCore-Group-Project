@@ -110,8 +110,6 @@
     <%#= DASHBOARD MODAL %>
     <%= render './modals/user_dashboard_modal' %>
 
-    <%= render './modals/search_modal' %>
-
     <main class="container-fluid">
         <%# ALERTS %>
         <% if flash[:notice].present? %>
@@ -142,7 +140,7 @@
             <img class='img-center text-center' src='/assets/polar1.png' width='80px;'/>
           </div>
 
-          <div class='col-8'style='text-align: center;'>
+          <div class='col-8 centering'>
             <p style="text-align: center; padding-top: 20px;"><strong> Change Font Size </strong></p>
             <span id="smallest-text" alt="0.8em" src="/assets/giphy.gif" onclick="smallestText()" style='font-size: 0.9em'> Smaller Font Size </span> |
             <span id="original-text" alt="0.8em" src="/assets/giphy.gif" onclick="originalText()" style='font-size: 1em' > Original Font Size </span> |

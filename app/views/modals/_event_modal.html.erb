@@ -11,7 +11,7 @@
       <div class='row modal-body'>
         <div class="col-md-4 event-information">
 
-          <p style='text-align: center'><strong>Event Information</strong></p>
+          <p class='centering'><strong>Event Information</strong></p>
           <div class = 'event-box'>
             <p><strong><%= event.event_type.titleize %> Name :</strong> <%= event.name %></p>
             <p><strong>Location :</strong> <%= event.location %></p>
@@ -40,7 +40,7 @@
         <div class='col-md-4 event-information'>
 
           <div class='task-create'>
-          <h3>Create Task:</h3>
+          <p class='centering'><strong>Create Task</strong></p>
 
             <%= simple_form_for [event, @task] do |f| %>
               <%= f.error_notification %>
@@ -63,7 +63,7 @@
 
         <div class='col-md-4'>
           <div class='group-members'>
-            <p style='text-align: center'><strong>Group Members</strong></p>
+            <p class='centering'><strong>Group Members</strong></p>
             <div class="task-viewer">
               <% event.tasks.each do |task| %>
                 <p><strong> User: </strong> <%= task.user&.full_name %></p>
@@ -74,7 +74,7 @@
           </div>
 
           <div>
-            <p style='text-align: center; padding-top: 20px;'><strong>Task List</strong></p>
+            <p class='search-headers'><strong>Task List</strong></p>
               <div class="task-viewer">
               <% event.tasks.each do |task| %>
                 <p><strong> Task Name: </strong> <%= task.name %></p>
