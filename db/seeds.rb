@@ -16,11 +16,11 @@ EVENT_TYPES = [
   'other'
 ]
 
+Team.destroy_all
 Event.destroy_all
 User.destroy_all
 Guest.destroy_all
 Task.destroy_all
-Team.destroy_all
 Membership.destroy_all
 
 

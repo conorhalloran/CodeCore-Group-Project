@@ -31,37 +31,18 @@
 
         <div class="row modal-body">
           <div class="col-md-6 modal-team">
-<<<<<<< HEAD
             <p class='centering'><strong>My Teams</strong></p>
             <div class="task-viewer">
               <ul>
                 <% @current_user_teams.each do |team| %>
-                <li id="team-1"><strong><%= team.name %></strong></li>
-                <% team.memberships.each do |mship| %>
-                <p><%= @users.find_by_id(mship.user_id).full_name %></p>
-                <% end %>
+                  <li id="team-1"><strong><%= team.name %></strong></li>
+                  <% team.memberships.each do |mship| %>
+                    <p class = 'mt-2'><em>Name: </em><%= @users.find_by_id(mship.user_id).full_name %></p>
+                    <p><em>Email: </em><%= @users.find_by_id(mship.user_id).email %></p>
+                  <% end %>
                 <% end %>
               </ul>
             </div>
-=======
-            <p style='text-align: center'><strong>Current Teams</strong></p>
-            <ul class='team-box'>
-              <li id="team-1"><em>Vancouver Team</em></li>
-              <div id="team-members" class="hide">
-                <ul>
-                  <li>Steve</li>
-                  <li>Calvin</li>
-                  <li>Sam</li>
-                  <li>Ian</li>
-                  <li>Conor</li>
-                  <li>James</li>
-                </ul>
-              </div>
-              <li><em>Port Moody Team</em></li>
-              <li><em>Burnaby Team</em></li>
-              <li><em>Surrey Team</em></li>
-            </ul>
->>>>>>> email will be sent to powerofpolarbear@gmail.com upon creation of a new event
           </div>
 
           <div class="col-md-6 modal-team">

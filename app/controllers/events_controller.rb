@@ -88,7 +88,7 @@ class EventsController < ApplicationController
         format.html { redirect_to root_path, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
         EventsMailer.notify_event_creator(@event).deliver_now
-        
+
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -100,6 +100,7 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1.json
   def update
     @event.slug = nil
+    @user_names = {}
     @message = @event.description
     @team = event.teams
 
@@ -108,7 +109,7 @@ class EventsController < ApplicationController
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
         EventsMailer.leader_notify_guest(@event, @message).deliver_now
-        
+
       else
         format.html { render :edit }
         format.json { render json: @event.errors, status: :unprocessable_entity }
