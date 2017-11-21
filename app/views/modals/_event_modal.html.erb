@@ -59,9 +59,11 @@
                 <%= f.input :due_by %>
                 <%= f.hidden_field :event_id, :value => event.id %>
               </div>
-              <div class="form-actions text-right">
-                <%= f.button :submit, :class => 'btn btn-outline-dark' %>
-              </div>
+              <% if user_signed_in? && can?(:manage, event) %>
+                <div class="form-actions text-right">
+                  <%= f.button :submit, :class => 'btn btn-outline-dark' %>
+                </div>
+              <% end %>
             <% end %>
           </div>
 
