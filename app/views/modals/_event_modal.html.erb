@@ -22,7 +22,7 @@
             <p><strong>Start :</strong> <%= timehour %>:00pm </p>
             <p><strong>End :</strong> <%= timehour + 2 %>:00pm </p>
             <div class = 'text-right'>
-
+            <% if user_signed_in? && can?(:manage, event) %>
               <%= link_to 'Edit',
                 edit_event_path(event),
                 :class => 'btn btn-outline-dark'
@@ -34,6 +34,7 @@
                 data: {confirm: 'Are you sure?'},
                 method: :delete
               %>
+            <% end %>
             </div>
           </div>
         </div>
@@ -49,7 +50,11 @@
               <div class="form-inputs">
                 <%= f.input :name %>
                 <%= f.input :description %>
-                <%= f.input :user_id, label: "Assigned To", collection: @user_names.values, input_html: {class: 'chosen-select'} %>
+                <%= f.input :user_id,
+                  label: "Assigned To",
+                  collection: @user_names.values,
+                  prompt: "Choose a member",
+                  input_html: {class: 'chosen-select'} %>
                 <%= f.input :status %>
                 <%= f.input :due_by %>
                 <%= f.hidden_field :event_id, :value => event.id %>

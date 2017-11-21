@@ -19,7 +19,6 @@
       ><%= event.name.truncate(10) %> | <%= event.event_type %>
       </button>
     </div>
-    <br>
   <% end %>
 <% end %>
 
@@ -29,8 +28,8 @@
 
     <div class='centering'>
       <%= form_tag(events_path(:anchor => 'search-area'), :method => "get", id: "search-form") do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Search Here" %>
-        <%= submit_tag "Search", :name => nil %>
+        <%= text_field_tag :search, params[:search], placeholder: "Which municipality?" %>
+        <%= submit_tag "S E A R C H", :name => nil %>
       <% end %>
     </div>
 
@@ -59,7 +58,7 @@
     </div>
 
   <div class = 'col-8'>
-    <p class='search-headers'><strong> Basics </strong></p>
+    <p class='search-headers'><strong> Using the Calendar </strong></p>
     <p>
       Welcome to Force of Nature's event sign up application. Events can be added
       by clicking the New Event button on the page. Events can be joined by
